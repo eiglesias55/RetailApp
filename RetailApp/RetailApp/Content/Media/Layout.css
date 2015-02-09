@@ -1,0 +1,17 @@
+﻿#layout_header{
+    background: #808080;
+    width:100%;
+    padding-top: 90px;
+    padding-bottom:20px;
+    margin-bottom: 20px;
+
+    
+}
+
+#layout_header .container h1{
+    font-family:Arial, Helvetica, sans-serif;
+    font-size: 35px;
+    color:white;
+    text-shadow: 0 1px 2px rgba(0,0,0,.6);
+}
+
