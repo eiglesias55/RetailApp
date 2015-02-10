@@ -17,8 +17,9 @@
     <link href="@Url.Content("~/Content/Media/Bootstrap/css/bootstrap.min.css")" rel="stylesheet">
     <link href="@Url.Content("~/Content/Media/Bootstrap/css/bootstrap-theme.min.css")" rel="stylesheet">
     <link href="@Url.Content("~/Content/Media/carrousel.css")" rel="stylesheet">
-    <link href="@Url.Content("~/Content/Media/Layout.css")" rel="stylesheet" />
-
+    <link href="@Url.Content("~/Content/Media/Layout.css")" rel="stylesheet">
+    <link href="@Url.Content("~/Content/Media/signin2.css")" rel="stylesheet">
+    
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -27,46 +28,34 @@
     <![endif]-->
 </head>
 <body>
-    <div class="navbar-wrapper">
-        <div class="container">
+    
+    <!--login modal-->
+    <div id="loginModal" class="modal show" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h1 class="text-center"></h1>
+                </div>
+                <div class="modal-body">
+                    <div class="button">
 
-            <nav class="navbar navbar-inverse navbar-static-top" role="navigation">
-                <div class="container">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        <a class="navbar-brand" href="@Url.Action("Index","Home")">gA Fest 2014</a>
+                        <button class="custom-button"><span class="pull-left">f</span>Sign in with Facebook</button>
+                        <span class="pull-right"><a href="#">No deseas loguear con facebook?</a></span>
                     </div>
-                    <div id="navbar" class="navbar-collapse collapse">
-                        <ul class="nav navbar-nav">
-                            <li><a href="@Url.Action("Index","Home")"><span class="glyphicon glyphicon-home"></span></a></li>
-                            <li class="@ViewBag.momga"><a href="@Url.Action("Index","MomentogA")">Momento gA</a></li>
-                            <li class="@ViewBag.hero"><a href="@Url.Action("Index","SeUnHeroe")">Sé un Héroe</a></li>
-                            <li class="@ViewBag.prev"><a href="@Url.Action("Index","Previa")">Previa</a></li>
-                            
-                        </ul>
-                        <ul style="margin-right:10px" class="nav navbar-nav navbar-right">
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> <span class="caret"></span></a>
-                                
-                            </li>
-                        </ul>
+                </div>     
+                <div class="modal-footer">
+                    <div class="col-md-12">
+                        <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
                     </div>
                 </div>
-            </nav>
-
+            </div>
         </div>
     </div>
 
     <div style="margin-top:90px;">
         @RenderBody()
     </div>
-
-
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>

@@ -122,6 +122,9 @@
     <Content Include="Content\Media\Bootstrap\css\bootstrap.min.css" />
     <Content Include="Content\Media\Bootstrap\js\bootstrap.min.js" />
     <Content Include="Content\Media\Bootstrap\js\npm.js" />
+    <Content Include="Content\Media\Img\fb_login2.jpg" />
+    <Content Include="Content\Media\Img\fb_login_awesome.png" />
+    <Content Include="Content\Media\signin2.css" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -135,7 +138,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="App_GlobalResources\" />
-    <Folder Include="Content\Media\Img\" />
     <Folder Include="Controllers\" />
     <Folder Include="Models\" />
   </ItemGroup>
