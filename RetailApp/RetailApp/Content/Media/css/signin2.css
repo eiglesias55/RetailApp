@@ -5,7 +5,7 @@
 body {
   padding-bottom: 40px;
   color: #5a5a5a;
-  background-color:blanchedalmond;
+  background-color:white;
 }
 
 
@@ -47,12 +47,19 @@ body {
   z-index: 10;
 }
 
+#loginModal {
+    position:absolute;
+    left:50%;
+    top:50%;
+    margin:-250px 0 0 -700px;
+}
+
 .button {
  height:100px;
  width:570px;
  display:inline-flex;
  background-color:#3b5998;
- border-radius: 6px;
+ border-radius: 10px;
 }
 
 .custom-button{
