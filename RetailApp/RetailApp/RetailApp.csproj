@@ -122,6 +122,7 @@
     <Content Include="Content\Media\Bootstrap\css\bootstrap.min.css" />
     <Content Include="Content\Media\Bootstrap\js\bootstrap.min.js" />
     <Content Include="Content\Media\Bootstrap\js\button_functions.js" />
+    <Content Include="Content\Media\Bootstrap\js\fbLogin.js" />
     <Content Include="Content\Media\Bootstrap\js\npm.js" />
     <Content Include="Content\Media\css\carrousel.css" />
     <Content Include="Content\Media\css\info.css" />
