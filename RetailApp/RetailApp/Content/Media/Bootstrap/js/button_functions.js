@@ -1,6 +1,9 @@
 
 $(document).ready(function(){
-   $('.button').fadeTo('slow', 0);
-    $('.custom-logo').fadeTo('slow', 0);
-    $('.custom-button').fadeTo('slow', 0);
+    $('.button').click(function () {
+        $(this).fadeTo('very fast', 0.85);
+        $(this).fadeTo('very fast', 1);
+        checkLoginsStatus();
+    });
 });
+
