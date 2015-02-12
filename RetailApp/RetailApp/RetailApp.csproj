@@ -129,9 +129,8 @@
     <Content Include="Content\Media\css\signin.css" />
     <Content Include="Content\Media\css\signin2.css" />
     <Content Include="Content\Media\Img\10947176_10152545473596836_7772312769705691900_n.jpg" />
+    <Content Include="Content\Media\Img\background.jpg" />
     <Content Include="Content\Media\Img\Discover.png" />
-    <Content Include="Content\Media\Img\fb_login2.jpg" />
-    <Content Include="Content\Media\Img\fb_login_awesome.png" />
     <Content Include="Content\Media\Img\gA_logo.jpg" />
     <Content Include="Content\Media\Img\icon_gA.png" />
     <Content Include="Content\Media\Img\logo_gA_azul.jpg" />
@@ -150,7 +149,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="App_GlobalResources\" />
-    <Folder Include="Content\Media\Img\" />
     <Folder Include="Controllers\" />
     <Folder Include="Models\" />
   </ItemGroup>

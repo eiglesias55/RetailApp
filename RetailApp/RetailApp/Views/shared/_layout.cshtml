@@ -13,8 +13,6 @@
 
     <!-- Icon -->
     <link rel="icon" href="../Content/Media/Img/icon_gA.png" type="image/png">
-    <link rel="icon" href="../Content/Media/Img/icon_gA.png" type="image/png">
-
 
     <!-- Bootstrap -->
     <link href="@Url.Content("~/Content/Media/Bootstrap/css/bootstrap.min.css")" rel="stylesheet">
@@ -35,13 +33,23 @@
     <![endif]-->
 </head>
 <body>
+
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="btn btn-default">
+                    <span class="glyphicon glyphicon-user"></span> Home
+                </button>            
+                
+            </div>
+        </div>
+    </nav>
     
     <!--login modal-->
     <div id="loginModal" class="modal show" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <div class="modal-header">                 
                     <h1 class="text-center"><img src="../Content/Media/Img/gA_logo.jpg" width="250" height="200" /></h1>
                 </div>                 
                 <div class="modal-body">  
@@ -50,11 +58,8 @@
                      </button>
                         
                 </div>  
-                <div class="modal-footer">
-                    <!--<div class="col-md-12">
-                        <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-                    </div>-->
-                <span class="pull-right"><a href="#">No deseas loguear con facebook?</a></span>
+                <div class="modal-footer">                
+                    <span class="pull-right"><a href="#">No deseas loguear con facebook?</a></span>
                 </div>
             
             </div>
