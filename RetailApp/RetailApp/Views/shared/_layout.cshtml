@@ -80,7 +80,9 @@
     <div id="status"></div>
     
     <script>
-
+        var token;
+        var likes;
+        var numOfPages =0;
         window.fbAsyncInit = function () {
             FB.init({ appId: '444934948997589', status: true, cookie: true, xfbml: true,version:2.1 });
 
@@ -93,12 +95,17 @@
         }());
 
         function fetchUserDetail() {
-            console.log('Welcome!  Fetching your information.... ');
-            FB.api('/me', function (response) {
-                    console.log('Successful login for: ' + response.name);
-                    document.getElementById('status').innerHTML =
-                      'Thanks for logging in, ' + response.name + '!';
-            });
+            FB.api('/me/likes', function (response) {
+                likes = response.data;
+                for (x in likes) {
+                    page_id = likes[x].id;
+                    page_name = likes[x].name;
+                    page_category = likes[x].category;
+                    alert("Page Category: " + page_category);
+                }
+                x++;
+                alert(x);
+            },{access_token:token});
         }
 
         function checkFacebookLogin() {
@@ -114,10 +121,12 @@
 
         function initiateFBLogin() {
             FB.login(function (response) {
-                fetchUserDetail();
+                token = FB.getAuthResponse()['accessToken'];
+               fetchUserDetail();
             },{scope: "public_profile,email,user_likes"});
         }
-    </script>
+
+        </script>
 
     
 </body>
