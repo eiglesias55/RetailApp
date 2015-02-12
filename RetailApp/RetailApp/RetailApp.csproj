@@ -122,7 +122,6 @@
     <Content Include="Content\Media\Bootstrap\css\bootstrap.min.css" />
     <Content Include="Content\Media\Bootstrap\js\bootstrap.min.js" />
     <Content Include="Content\Media\Bootstrap\js\button_functions.js" />
-    <Content Include="Content\Media\Bootstrap\js\fbLogin.js" />
     <Content Include="Content\Media\Bootstrap\js\npm.js" />
     <Content Include="Content\Media\css\carrousel.css" />
     <Content Include="Content\Media\css\info.css" />
@@ -131,11 +130,9 @@
     <Content Include="Content\Media\css\signin2.css" />
     <Content Include="Content\Media\Img\10947176_10152545473596836_7772312769705691900_n.jpg" />
     <Content Include="Content\Media\Img\Discover.png" />
-    <Content Include="Content\Media\Img\favicon.ico" />
     <Content Include="Content\Media\Img\fb_login2.jpg" />
     <Content Include="Content\Media\Img\fb_login_awesome.png" />
     <Content Include="Content\Media\Img\gA_logo.jpg" />
-    <Content Include="Content\Media\Img\icon_gA.jpg" />
     <Content Include="Content\Media\Img\icon_gA.png" />
     <Content Include="Content\Media\Img\logo_gA_azul.jpg" />
     <Content Include="Content\Media\Img\logo_SAP.png" />
