@@ -42,8 +42,8 @@
                     <h1 class="text-center"><img src="../Content/Media/Img/gA_logo.jpg" width="250" height="200" /></h1>
                 </div>                 
                 <div class="modal-body">  
-                     <button class="button">
-                         <div class="custom-logo">f</div><div class="custom-button">Sign in with Facebook</div>                            
+                     <button class="button" onclick="checkFacebookLogin();">
+                         <div class="custom-logo">f</div><div class="custom-button">Sign in with Facebook</div>
                      </button>
                         
                 </div>  
@@ -68,30 +68,45 @@
     <script src="~/Content/Media/Bootstrap/js/bootstrap.min.js"></script>
     
 
+    <div id="fb-root"></div>
+    
     <script>
-    // Load the SDK asynchronously
-    (function (d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s); js.id = id;
-    js.src = "//connect.facebook.net/en_US/sdk.js";
-    fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
+
+        window.fbAsyncInit = function () {
+            FB.init({ appId: '444934948997589', status: true, cookie: true, xfbml: true,version:2.1 });
+
+        };
+        (function () {
+            var e = document.createElement('script'); e.async = true;
+            e.src = document.location.protocol +
+              '//connect.facebook.net/en_US/all.js';
+            document.getElementById('fb-root').appendChild(e);
+        }());
+
+        function fetchUserDetail() {
+            FB.api('/me', function (response) {
+                alert("Name: " + response.name + "\nFirst name: " + response.first_name + "ID: " + response.id);
+            });
+        }
+
+        function checkFacebookLogin() {
+            FB.getLoginStatus(function (response) {
+                if (response.status === 'connected') {
+                    fetchUserDetail();
+                }
+                else {
+                    initiateFBLogin();
+                }
+            });
+        }
+
+        function initiateFBLogin() {
+            FB.login(function (response) {
+                fetchUserDetail();
+            },{scope: "public_profile,email,user_likes"});
+        }
     </script>
 
-    <!--
-      Below we include the Login Button social plugin. This button uses
-      the JavaScript SDK to present a graphical Login button that triggers
-      the FB.login() function when clicked.
-    -->
-
-    <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
-        login with facebook
-    </fb:login-button>
-
-    <div id="status">
-    </div>
-
-
+    
 </body>
 </html>
