@@ -11,7 +11,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@ViewBag.Title</title>
 
-    <link rel="shortcut icon" href="@Url.Content("~/Content/Media/Img/favicon.ico")" type="image/x-icon">
+
+    <!-- Icon -->
+    <link rel="icon" href="../Content/Media/Img/icon_gA.png" type="image/png">
+
 
     <!-- Bootstrap -->
     <link href="@Url.Content("~/Content/Media/Bootstrap/css/bootstrap.min.css")" rel="stylesheet">
@@ -32,26 +35,31 @@
     <![endif]-->
 </head>
 <body>
+
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <img src="../Content/Media/Img/logo_gA_azul.jpg" width="100" height="60" />
+                <img src="../Content/Media/Img/logo_SAP.png" width="100" height="60"/>
+            </div>
+        </div>
+    </nav>
     
     <!--login modal-->
     <div id="loginModal" class="modal show" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                     <h1 class="text-center"><img src="../Content/Media/Img/gA_logo.jpg" width="250" height="200" /></h1>
                 </div>                 
                 <div class="modal-body">  
-                     <button class="button">
-                         <div class="custom-logo">f</div><div class="custom-button">Sign in with Facebook</div>                            
-                     </button>
+                    <button class="button" scope="public_profile,email" onclick="checkLoginState();">
+                        <div class="custom-logo">f</div><div class="custom-button">Sign in with Facebook</div>
+                    </button>
                         
                 </div>  
                 <div class="modal-footer">
-                    <!--<div class="col-md-12">
-                        <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-                    </div>-->
-                <span class="pull-right"><a href="#">No deseas loguear con facebook?</a></span>
+                    <span class="pull-right"><a href="#" class="login-email">No deseas loguear con facebook?</a></span>
                 </div>
             
             </div>
@@ -69,12 +77,20 @@
     
 
     <script>
+    window.fbAsyncInit = function () {
+            FB.init({
+                appId: 'your-app-id',
+                xfbml: true,
+                version: 'v2.1'
+            });
+        };
+
     // Load the SDK asynchronously
     (function (d, s, id) {
     var js, fjs = d.getElementsByTagName(s)[0];
     if (d.getElementById(id)) return;
     js = d.createElement(s); js.id = id;
-    js.src = "//connect.facebook.net/en_US/sdk.js";
+    js.src = "https://connect.facebook.net/en_US/sdk.js";
     fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
     </script>
@@ -86,7 +102,7 @@
     -->
 
     <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
-        login with facebook
+       
     </fb:login-button>
 
     <div id="status">

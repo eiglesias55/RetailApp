@@ -129,8 +129,16 @@
     <Content Include="Content\Media\css\Layout.css" />
     <Content Include="Content\Media\css\signin.css" />
     <Content Include="Content\Media\css\signin2.css" />
+    <Content Include="Content\Media\Img\10947176_10152545473596836_7772312769705691900_n.jpg" />
+    <Content Include="Content\Media\Img\Discover.png" />
+    <Content Include="Content\Media\Img\favicon.ico" />
     <Content Include="Content\Media\Img\fb_login2.jpg" />
     <Content Include="Content\Media\Img\fb_login_awesome.png" />
+    <Content Include="Content\Media\Img\gA_logo.jpg" />
+    <Content Include="Content\Media\Img\icon_gA.jpg" />
+    <Content Include="Content\Media\Img\icon_gA.png" />
+    <Content Include="Content\Media\Img\logo_gA_azul.jpg" />
+    <Content Include="Content\Media\Img\logo_SAP.png" />
     <Content Include="Content\Media\JQuery\jquery-2.1.3.min.js" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
