@@ -150,6 +150,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="App_GlobalResources\" />
+    <Folder Include="Content\Media\Img\" />
     <Folder Include="Controllers\" />
     <Folder Include="Models\" />
   </ItemGroup>

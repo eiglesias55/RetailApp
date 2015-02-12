@@ -11,7 +11,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@ViewBag.Title</title>
 
-
     <!-- Icon -->
     <link rel="icon" href="../Content/Media/Img/icon_gA.png" type="image/png">
     <link rel="icon" href="../Content/Media/Img/icon_gA.png" type="image/png">
@@ -36,31 +35,26 @@
     <![endif]-->
 </head>
 <body>
-
-    <nav class="navbar navbar-default">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <img src="../Content/Media/Img/logo_gA_azul.jpg" width="100" height="60" />
-                <img src="../Content/Media/Img/logo_SAP.png" width="100" height="60"/>
-            </div>
-        </div>
-    </nav>
     
     <!--login modal-->
     <div id="loginModal" class="modal show" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                     <h1 class="text-center"><img src="../Content/Media/Img/gA_logo.jpg" width="250" height="200" /></h1>
                 </div>                 
                 <div class="modal-body">  
-                    <button class="button" scope="public_profile,email" onclick="checkLoginState();">
-                        <div class="custom-logo">f</div><div class="custom-button">Sign in with Facebook</div>
-                    </button>
+                     <button class="button" onclick="checkFacebookLogin();">
+                         <div class="custom-logo">f</div><div class="custom-button">Sign in with Facebook</div>
+                     </button>
                         
                 </div>  
                 <div class="modal-footer">
-                    <span class="pull-right"><a href="#" class="login-email">No deseas loguear con facebook?</a></span>
+                    <!--<div class="col-md-12">
+                        <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+                    </div>-->
+                <span class="pull-right"><a href="#">No deseas loguear con facebook?</a></span>
                 </div>
             
             </div>
@@ -77,38 +71,49 @@
     <script src="~/Content/Media/Bootstrap/js/bootstrap.min.js"></script>
     
 
+    <div id="fb-root"></div>
+    <div id="status"></div>
+    
     <script>
-    window.fbAsyncInit = function () {
-            FB.init({
-                appId: 'your-app-id',
-                xfbml: true,
-                version: 'v2.1'
-            });
-        };
 
-    // Load the SDK asynchronously
-    (function (d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s); js.id = id;
-    js.src = "https://connect.facebook.net/en_US/sdk.js";
-    fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
+        window.fbAsyncInit = function () {
+            FB.init({ appId: '444934948997589', status: true, cookie: true, xfbml: true,version:2.1 });
+
+        };
+        (function () {
+            var e = document.createElement('script'); e.async = true;
+            e.src = document.location.protocol +
+              '//connect.facebook.net/en_US/all.js';
+            document.getElementById('fb-root').appendChild(e);
+        }());
+
+        function fetchUserDetail() {
+            console.log('Welcome!  Fetching your information.... ');
+            FB.api('/me', function (response) {
+                    console.log('Successful login for: ' + response.name);
+                    document.getElementById('status').innerHTML =
+                      'Thanks for logging in, ' + response.name + '!';
+            });
+        }
+
+        function checkFacebookLogin() {
+            FB.getLoginStatus(function (response) {
+                if (response.status === 'connected') {
+                    fetchUserDetail();
+                }
+                else {
+                    initiateFBLogin();
+                }
+            });
+        }
+
+        function initiateFBLogin() {
+            FB.login(function (response) {
+                fetchUserDetail();
+            },{scope: "public_profile,email,user_likes"});
+        }
     </script>
 
-    <!--
-      Below we include the Login Button social plugin. This button uses
-      the JavaScript SDK to present a graphical Login button that triggers
-      the FB.login() function when clicked.
-    -->
-
-    <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
-       
-    </fb:login-button>
-
-    <div id="status">
-    </div>
-
-
+    
 </body>
 </html>
