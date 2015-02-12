@@ -122,15 +122,12 @@
     <Content Include="Content\Media\Bootstrap\css\bootstrap.min.css" />
     <Content Include="Content\Media\Bootstrap\js\bootstrap.min.js" />
     <Content Include="Content\Media\Bootstrap\js\button_functions.js" />
-    <Content Include="Content\Media\Bootstrap\js\fbLogin.js" />
     <Content Include="Content\Media\Bootstrap\js\npm.js" />
     <Content Include="Content\Media\css\carrousel.css" />
     <Content Include="Content\Media\css\info.css" />
     <Content Include="Content\Media\css\Layout.css" />
     <Content Include="Content\Media\css\signin.css" />
     <Content Include="Content\Media\css\signin2.css" />
-    <Content Include="Content\Media\Img\fb_login2.jpg" />
-    <Content Include="Content\Media\Img\fb_login_awesome.png" />
     <Content Include="Content\Media\JQuery\jquery-2.1.3.min.js" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
@@ -145,6 +142,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="App_GlobalResources\" />
+    <Folder Include="Content\Media\Img\" />
     <Folder Include="Controllers\" />
     <Folder Include="Models\" />
   </ItemGroup>
