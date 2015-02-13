@@ -3,7 +3,7 @@
 /* Padding below the footer and lighter body text */
 
 html {
-    width:100%;
+    width:0%;
     height:0%;
     background: url(../Img/Discover.png) no-repeat fixed center;
     -webkit-background-size: cover;
@@ -12,20 +12,8 @@ html {
     background-size: cover;
 }
 
-body {
-  width:100%;
-  height:0%;
-  color: #5a5a5a;  
-}
-
-
-#loginModal {
-   margin-top:5%; 
-    
-}
-
-.modal-body {
-    width:100%;
+#loginModal{
+    margin-top:5%;
 }
 
 .button {    
@@ -44,7 +32,7 @@ body {
     text-align:center;
     font-size:200%;
     padding-top:1em;
-    border-left:3px solid #274380;
+    border-left:2px solid #274380;
 }
 
 .custom-logo {
@@ -55,7 +43,7 @@ body {
     font-size:70px; 
     background-color:#3b5998; 
     text-align:center;   
-    border-right:3px solid #274380;
+    border-right:2px solid #274380;
     padding-bottom:40px;
 }
      
