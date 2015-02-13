@@ -2,53 +2,48 @@
 -------------------------------------------------- */
 /* Padding below the footer and lighter body text */
 
-body {
-  padding-bottom: 40px;
-  color: #5a5a5a;  
-  /*background-image: url(../Img/background.jpg);*/
+html {
+    width:0%;
+    height:0%;
+    background: url(../Img/Discover.png) no-repeat fixed center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 
-#loginModal {
-    position:absolute;
-    left:50%;
-    top:50%;
-    margin:-250px 0 0 -700px;
+#loginModal{
+    margin-top:5%;
 }
 
-.button {
- height:100px;
- width:570px;
- display:inline-flex;
- background-color:#3b5998;
- border-radius: 10px;
+.button {    
+     width:100%;
+     display:inline-flex;
+     background-color:#3b5998;
+     border-radius: 20px;
 }
 
 .custom-button{
     height:100px;
-    width:470px;
+    width:80%;
     color:#FFFFFF;
     font-family:Arial;
-    font-size:36px;
     background-color:#3b5998;
     text-align:center;
-    padding-top:20px;
+    font-size:200%;
+    padding-top:1em;
     border-left:2px solid #274380;
 }
 
 .custom-logo {
     height:100px;
-    width:100px;
+    width:20%;
     color:#FFFFFF;
     font-family:'Arial';
     font-size:70px; 
-    background-color:#3b5998;    
+    background-color:#3b5998; 
+    text-align:center;   
     border-right:2px solid #274380;
     padding-bottom:40px;
 }
-
-.container-fluid {
-    background-color:dimgrey;
-}
-.navbar-header {
-    display:inline-flex; 
-}
+     
