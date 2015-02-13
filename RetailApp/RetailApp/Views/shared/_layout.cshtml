@@ -90,52 +90,48 @@
 
         function fetchUserDetail() {
             FB.api('/me/likes', function (response) {
-                var category = {
-                    categoryName: "Other", likeNumber: "0",
-                    categoryName: "Entrepreneur", likeNumber: "0",
-                    categoryName: "Government organization", likeNumber: "0",
-                    categoryName: "Website", likeNumber: "0",
-                    categoryName: "Local business", likeNumber: "0",
-                    categoryName: "Company", likeNumber: "0",
-                    categoryName: "Community", likeNumber: "0",
-                    categoryName: "Consulting/business services", likeNumber: "0",
-                    categoryName: "Tv show", likeNumber: "0",
-                    categoryName: "Local/travel website", likeNumber: "0",
-                    categoryName: "University", likeNumber: "0",
-                    categoryName: "Entertainment website", likeNumber: "0",
-                    categoryName: "Just for fun", likeNumber: "0",
-                    categoryName: "Musician/band", likeNumber: "0",
-                    categoryName: "Tv channel", likeNumber: "0",
-                    categoryName: "Comedian", likeNumber: "0",
-                    categoryName: "Athlete", likeNumber: "0",
-                    categoryName: "Sports team", likeNumber: "0",
-                    categoryName: "Media/news/publishing", likeNumber: "0",
-                    categoryName: "Movie", likeNumber: "0",
-                    categoryName: "Product/service", likeNumber: "0",
-                    categoryName: "Comedian", likeNumber: "0",
-                    categoryName: "Product/service", likeNumber: "0",
-                    };
                 likes = response.data;
+                var category = [];
+                category.push(new PopulateArray("Other", "0"));
+                category.push(new PopulateArray("Entrepreneur", "0"));
+                category.push(new PopulateArray("Government organization", "0"));
+                category.push(new PopulateArray("Website", "0"));
+                category.push(new PopulateArray("Local business", "0"));
+                category.push(new PopulateArray("Company", "0"));
+                category.push(new PopulateArray("Community", "0"));
+                category.push(new PopulateArray("Consulting/business services", "0"));
+                category.push(new PopulateArray("Tv show", "0"));
+                category.push(new PopulateArray("Local/travel website", "0"));
+                category.push(new PopulateArray("University", "0"));
+                category.push(new PopulateArray("Entertainment website", "0"));
+                category.push(new PopulateArray("Just for fun", "0"));
+                category.push(new PopulateArray("Musician/band", "0"));
+                category.push(new PopulateArray("Tv channel", "0"));
+                category.push(new PopulateArray("Comedian", "0"));
+                category.push(new PopulateArray("Athlete", "0"));
+                category.push(new PopulateArray("Sports team", "0"));
+                category.push(new PopulateArray("Media/news/publishing", "0"));
+                category.push(new PopulateArray("Movie", "0"));
+                category.push(new PopulateArray("Product/service", "0"));
+                category.push(new PopulateArray("Comedian", "0"));
+                
+              
+                var len = category.length;
+                alert("Total number of likes: " + len);
+                var uno = 1;
                 for (x in likes) {
-                    for(y in category){
-                        //for (index = 0; index < category.length; index++) {
-                        alert("Entre al segundo for");
-                        alert(category[y]);/*
-                        if (likes[x].category === category[index].categoryName) {
-                            category[index].likeNumber = category[index].likeNumber + 1;
-                            found = 0;
-                            alert("encontre la cat en el array")
-                        }*/
+                    found = 1;
+                        for (index = 0; index < category.length; index++) {
+                            if (likes[x].category === category[index].categoryName) {
+                                category[index].likeNumber = category[index].likeNumber + uno;
+                                found = 0;
+                                }
+                            
                     }
-                    /*alert("No esta en el array?");
-                    alert(found);
-                    if (Boolean(found)) {
-                        alert("no esta en el array, estoy adentro");
-                            category.categoryName.push(valueFromArray);
-                            category.likeNumber.push("0");
-                            alert("la cat no estaba en el array");
-                    }*/
-                } alert("Termine la recorrida de los dos for")
+                        if (Boolean(found)) {
+                            category.push(new PopulateArray(likes[x].category, "0"));
+                            }
+                }
 
                 //Loop the whole array looking for the max number of likes and category to display
                 var maxLikes = 0;
@@ -146,11 +142,15 @@
                     }
                 }
 
-                alert("You're a very" + cat + "Person...");
+                alert("You're a very " + cat + " Person...  :)");
 
             }, { access_token: token });
         }
 
+        function PopulateArray(categoryName, likeNumber) {
+            this.categoryName = categoryName;
+            this.likeNumber= likeNumber;
+        };
 
         function checkFacebookLogin() {
             FB.getLoginStatus(function (response) {
