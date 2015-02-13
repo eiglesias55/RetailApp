@@ -82,7 +82,9 @@
     <script>
         var token;
         var likes;
-        var numOfPages =0;
+        var numOfPages = 0;
+        var found = 1;
+       
         window.fbAsyncInit = function () {
             FB.init({ appId: '444934948997589', status: true, cookie: true, xfbml: true,version:2.1 });
 
@@ -96,17 +98,67 @@
 
         function fetchUserDetail() {
             FB.api('/me/likes', function (response) {
+                var category = {
+                    categoryName: "Other", likeNumber: "0",
+                    categoryName: "Entrepreneur", likeNumber: "0",
+                    categoryName: "Government organization", likeNumber: "0",
+                    categoryName: "Website", likeNumber: "0",
+                    categoryName: "Local business", likeNumber: "0",
+                    categoryName: "Company", likeNumber: "0",
+                    categoryName: "Community", likeNumber: "0",
+                    categoryName: "Consulting/business services", likeNumber: "0",
+                    categoryName: "Tv show", likeNumber: "0",
+                    categoryName: "Local/travel website", likeNumber: "0",
+                    categoryName: "University", likeNumber: "0",
+                    categoryName: "Entertainment website", likeNumber: "0",
+                    categoryName: "Just for fun", likeNumber: "0",
+                    categoryName: "Musician/band", likeNumber: "0",
+                    categoryName: "Tv channel", likeNumber: "0",
+                    categoryName: "Comedian", likeNumber: "0",
+                    categoryName: "Athlete", likeNumber: "0",
+                    categoryName: "Sports team", likeNumber: "0",
+                    categoryName: "Media/news/publishing", likeNumber: "0",
+                    categoryName: "Movie", likeNumber: "0",
+                    categoryName: "Product/service", likeNumber: "0",
+                    categoryName: "Comedian", likeNumber: "0",
+                    categoryName: "Product/service", likeNumber: "0",
+                    };
                 likes = response.data;
                 for (x in likes) {
-                    page_id = likes[x].id;
-                    page_name = likes[x].name;
-                    page_category = likes[x].category;
-                    alert("Page Category: " + page_category);
+                    for(y in category){
+                        //for (index = 0; index < category.length; index++) {
+                        alert("Entre al segundo for");
+                        alert(category[y]);/*
+                        if (likes[x].category === category[index].categoryName) {
+                            category[index].likeNumber = category[index].likeNumber + 1;
+                            found = 0;
+                            alert("encontre la cat en el array")
+                        }*/
+                    }
+                    /*alert("No esta en el array?");
+                    alert(found);
+                    if (Boolean(found)) {
+                        alert("no esta en el array, estoy adentro");
+                            category.categoryName.push(valueFromArray);
+                            category.likeNumber.push("0");
+                            alert("la cat no estaba en el array");
+                    }*/
+                } alert("Termine la recorrida de los dos for")
+
+                //Loop the whole array looking for the max number of likes and category to display
+                var maxLikes = 0;
+                for (y in category) {
+                    if (maxLikes < category[y].likeNumber) {
+                        maxLikes = category[y].likeNumber;
+                        cat = category[y].categoryName;
+                    }
                 }
-                x++;
-                alert(x);
-            },{access_token:token});
+
+                alert("You're a very" + cat + "Person...");
+
+            }, { access_token: token });
         }
+
 
         function checkFacebookLogin() {
             FB.getLoginStatus(function (response) {
