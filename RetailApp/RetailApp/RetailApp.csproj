@@ -109,6 +109,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\HomeController.cs" />
+    <Compile Include="Controllers\QuestionnaireController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -122,10 +123,12 @@
     <Content Include="Content\Media\Bootstrap\css\bootstrap.min.css" />
     <Content Include="Content\Media\Bootstrap\js\bootstrap.min.js" />
     <Content Include="Content\Media\Bootstrap\js\button_functions.js" />
+    <Content Include="Content\Media\Bootstrap\js\questionnaire.js" />
     <Content Include="Content\Media\Bootstrap\js\npm.js" />
     <Content Include="Content\Media\css\carrousel.css" />
     <Content Include="Content\Media\css\info.css" />
     <Content Include="Content\Media\css\Layout.css" />
+    <Content Include="Content\Media\css\questionnaire.css" />
     <Content Include="Content\Media\css\signin.css" />
     <Content Include="Content\Media\css\signin2.css" />
     <Content Include="Content\Media\Img\10947176_10152545473596836_7772312769705691900_n.jpg" />
@@ -149,7 +152,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="App_GlobalResources\" />
-    <Folder Include="Controllers\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
@@ -170,6 +172,12 @@
     <Content Include="Content\Media\Bootstrap\font\glyphicons-halflings-regular.svg" />
     <Content Include="Content\Media\Bootstrap\font\glyphicons-halflings-regular.ttf" />
     <Content Include="Content\Media\Bootstrap\font\glyphicons-halflings-regular.woff" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Questionnaire\_questionnaire.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Questionnaire\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
