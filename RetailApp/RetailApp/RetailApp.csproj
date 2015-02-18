@@ -108,8 +108,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_Start\HomeController.cs" />
-    <Compile Include="Controllers\QuestionnaireController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -174,10 +174,10 @@
     <Content Include="Content\Media\Bootstrap\font\glyphicons-halflings-regular.woff" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Questionnaire\_questionnaire.cshtml" />
+    <Content Include="Views\Admin\_Listado.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Questionnaire\Index.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

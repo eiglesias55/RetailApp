@@ -113,3 +113,40 @@ body {
         top: 1px;
         text-emphasis-color:white;
 }
+
+h1 {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    text-align: left;
+    color: white;
+    font-weight: bold;
+}
+
+.bodyAdmin {
+    padding-top: 20%;
+    top: 50%;
+    left: 50%;
+    margin-left: 50px;
+    margin-top: 150px;
+}
+.containerAdmin {
+    background-color: black;
+    opacity: 0.8;
+    filter: alpha(opacity=80);
+    align-content:center;
+}
+thead {
+color:white;
+font-weight:bold;
+}
+tbody {
+color:white;
+}
+#buttonsAdmin {
+    padding-top: 32px;
+    color: white;
+    font-weight: bold;
+    
+}
