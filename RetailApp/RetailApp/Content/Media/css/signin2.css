@@ -26,6 +26,7 @@ body {
      display:inline-flex;
      background-color:#022248;
      border-radius: 20px;
+     border:1px solid black;
 }
 
 .custom-button{

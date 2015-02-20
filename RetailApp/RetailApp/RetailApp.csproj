@@ -110,6 +110,8 @@
   <ItemGroup>
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PrizeController.cs" />
+    <Compile Include="Controllers\QuestionnaireController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -131,6 +133,7 @@
     <Content Include="Content\Media\css\questionnaire.css" />
     <Content Include="Content\Media\css\signin.css" />
     <Content Include="Content\Media\css\signin2.css" />
+    <Content Include="Content\Media\css\prize.css" />
     <Content Include="Content\Media\Img\10947176_10152545473596836_7772312769705691900_n.jpg" />
     <Content Include="Content\Media\Img\background.jpg" />
     <Content Include="Content\Media\Img\Discover.png" />
@@ -178,6 +181,16 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Admin\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Questionnaire\Index.cshtml" />
+    <Content Include="Views\Questionnaire\_questionnaire.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Prize\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Prize\_prize.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

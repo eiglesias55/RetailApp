@@ -1,0 +1,7 @@
+﻿html {
+    background: url(../Img/Discover.png) no-repeat fixed center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
