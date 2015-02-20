@@ -1,0 +1,328 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="RetailAppModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ADMIN">
+          <Key>
+            <PropertyRef Name="Email" />
+          </Key>
+          <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Apellido" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OPCION">
+          <Key>
+            <PropertyRef Name="Numero" />
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Numero" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PREGUNTA">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Pregunta" Type="varchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RESPUESTA">
+          <Key>
+            <PropertyRef Name="Email" />
+          </Key>
+          <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Numero" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="USER">
+          <Key>
+            <PropertyRef Name="Email" />
+          </Key>
+          <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Apellido" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Token" Type="varchar(max)" />
+          <Property Name="Vip" Type="char" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_RESPUESTA_OPCION">
+          <End Role="OPCION" Type="Self.OPCION" Multiplicity="1" />
+          <End Role="RESPUESTA" Type="Self.RESPUESTA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OPCION">
+              <PropertyRef Name="Numero" />
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RESPUESTA">
+              <PropertyRef Name="Id" />
+              <PropertyRef Name="Numero" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RESPUESTA_PREGUNTA">
+          <End Role="PREGUNTA" Type="Self.PREGUNTA" Multiplicity="1" />
+          <End Role="RESPUESTA" Type="Self.RESPUESTA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PREGUNTA">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RESPUESTA">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RESPUESTA_USER">
+          <End Role="USER" Type="Self.USER" Multiplicity="1" />
+          <End Role="RESPUESTA" Type="Self.RESPUESTA" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="USER">
+              <PropertyRef Name="Email" />
+            </Principal>
+            <Dependent Role="RESPUESTA">
+              <PropertyRef Name="Email" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="RetailAppModelStoreContainer">
+          <EntitySet Name="ADMIN" EntityType="Self.ADMIN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OPCION" EntityType="Self.OPCION" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PREGUNTA" EntityType="Self.PREGUNTA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RESPUESTA" EntityType="Self.RESPUESTA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USER" EntityType="Self.USER" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_RESPUESTA_OPCION" Association="Self.FK_RESPUESTA_OPCION">
+            <End Role="OPCION" EntitySet="OPCION" />
+            <End Role="RESPUESTA" EntitySet="RESPUESTA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RESPUESTA_PREGUNTA" Association="Self.FK_RESPUESTA_PREGUNTA">
+            <End Role="PREGUNTA" EntitySet="PREGUNTA" />
+            <End Role="RESPUESTA" EntitySet="RESPUESTA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RESPUESTA_USER" Association="Self.FK_RESPUESTA_USER">
+            <End Role="USER" EntitySet="USER" />
+            <End Role="RESPUESTA" EntitySet="RESPUESTA" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="RetailAppModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ADMIN">
+          <Key>
+            <PropertyRef Name="Email" />
+          </Key>
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OPCION">
+          <Key>
+            <PropertyRef Name="Numero" />
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Numero" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="RESPUESTA" Relationship="Self.FK_RESPUESTA_OPCION" FromRole="OPCION" ToRole="RESPUESTA" />
+        </EntityType>
+        <EntityType Name="PREGUNTA">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Pregunta1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="RESPUESTA" Relationship="Self.FK_RESPUESTA_PREGUNTA" FromRole="PREGUNTA" ToRole="RESPUESTA" />
+        </EntityType>
+        <EntityType Name="RESPUESTA">
+          <Key>
+            <PropertyRef Name="Email" />
+          </Key>
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Numero" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="OPCION" Relationship="Self.FK_RESPUESTA_OPCION" FromRole="RESPUESTA" ToRole="OPCION" />
+          <NavigationProperty Name="PREGUNTA" Relationship="Self.FK_RESPUESTA_PREGUNTA" FromRole="RESPUESTA" ToRole="PREGUNTA" />
+          <NavigationProperty Name="USER" Relationship="Self.FK_RESPUESTA_USER" FromRole="RESPUESTA" ToRole="USER" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="USER">
+          <Key>
+            <PropertyRef Name="Email" />
+          </Key>
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Token" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Vip" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="RESPUESTA" Relationship="Self.FK_RESPUESTA_USER" FromRole="USER" ToRole="RESPUESTA" />
+        </EntityType>
+        <Association Name="FK_RESPUESTA_OPCION">
+          <End Role="OPCION" Type="Self.OPCION" Multiplicity="1" />
+          <End Role="RESPUESTA" Type="Self.RESPUESTA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OPCION">
+              <PropertyRef Name="Numero" />
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RESPUESTA">
+              <PropertyRef Name="Id" />
+              <PropertyRef Name="Numero" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RESPUESTA_PREGUNTA">
+          <End Role="PREGUNTA" Type="Self.PREGUNTA" Multiplicity="1" />
+          <End Role="RESPUESTA" Type="Self.RESPUESTA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PREGUNTA">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RESPUESTA">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RESPUESTA_USER">
+          <End Role="USER" Type="Self.USER" Multiplicity="1" />
+          <End Role="RESPUESTA" Type="Self.RESPUESTA" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="USER">
+              <PropertyRef Name="Email" />
+            </Principal>
+            <Dependent Role="RESPUESTA">
+              <PropertyRef Name="Email" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="RetailAppEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ADMIN" EntityType="Self.ADMIN" />
+          <EntitySet Name="OPCION" EntityType="Self.OPCION" />
+          <EntitySet Name="PREGUNTA" EntityType="Self.PREGUNTA" />
+          <EntitySet Name="RESPUESTA" EntityType="Self.RESPUESTA" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="USER" EntityType="Self.USER" />
+          <AssociationSet Name="FK_RESPUESTA_OPCION" Association="Self.FK_RESPUESTA_OPCION">
+            <End Role="OPCION" EntitySet="OPCION" />
+            <End Role="RESPUESTA" EntitySet="RESPUESTA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RESPUESTA_PREGUNTA" Association="Self.FK_RESPUESTA_PREGUNTA">
+            <End Role="PREGUNTA" EntitySet="PREGUNTA" />
+            <End Role="RESPUESTA" EntitySet="RESPUESTA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RESPUESTA_USER" Association="Self.FK_RESPUESTA_USER">
+            <End Role="USER" EntitySet="USER" />
+            <End Role="RESPUESTA" EntitySet="RESPUESTA" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="RetailAppModelStoreContainer" CdmEntityContainer="RetailAppEntities1">
+          <EntitySetMapping Name="ADMIN">
+            <EntityTypeMapping TypeName="RetailAppModel.ADMIN">
+              <MappingFragment StoreEntitySet="ADMIN">
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OPCION">
+            <EntityTypeMapping TypeName="RetailAppModel.OPCION">
+              <MappingFragment StoreEntitySet="OPCION">
+                <ScalarProperty Name="Numero" ColumnName="Numero" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PREGUNTA">
+            <EntityTypeMapping TypeName="RetailAppModel.PREGUNTA">
+              <MappingFragment StoreEntitySet="PREGUNTA">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Pregunta1" ColumnName="Pregunta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RESPUESTA">
+            <EntityTypeMapping TypeName="RetailAppModel.RESPUESTA">
+              <MappingFragment StoreEntitySet="RESPUESTA">
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Numero" ColumnName="Numero" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="RetailAppModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USER">
+            <EntityTypeMapping TypeName="RetailAppModel.USER">
+              <MappingFragment StoreEntitySet="USER">
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+                <ScalarProperty Name="Token" ColumnName="Token" />
+                <ScalarProperty Name="Vip" ColumnName="Vip" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
