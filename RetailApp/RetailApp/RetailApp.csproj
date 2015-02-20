@@ -127,6 +127,7 @@
     <Content Include="Content\Media\Bootstrap\js\button_functions.js" />
     <Content Include="Content\Media\Bootstrap\js\questionnaire.js" />
     <Content Include="Content\Media\Bootstrap\js\npm.js" />
+    <Content Include="Content\Media\Bootstrap\js\teat.js" />
     <Content Include="Content\Media\css\carrousel.css" />
     <Content Include="Content\Media\css\info.css" />
     <Content Include="Content\Media\css\Layout.css" />
