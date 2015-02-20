@@ -29,6 +29,13 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PublishDatabaseSettings>
+      <Objects>
+        <ObjectGroup Name="RetailAppDB" Order="1">
+          <Destination Path="Data Source=localhost\SQLEXPRESS%3bInitial Catalog=RetailApp%3bPersist Security Info=True%3bUser ID=sa%3bPassword=asddsa123" />
+        </ObjectGroup>
+      </Objects>
+    </PublishDatabaseSettings>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -39,10 +46,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.2\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.2\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -112,6 +127,39 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PrizeController.cs" />
     <Compile Include="Controllers\QuestionnaireController.cs" />
+    <Compile Include="Database\ADMIN.cs">
+      <DependentUpon>RetailAppDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\OPCION.cs">
+      <DependentUpon>RetailAppDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\PREGUNTA.cs">
+      <DependentUpon>RetailAppDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\RESPUESTA.cs">
+      <DependentUpon>RetailAppDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\RetailAppDB.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RetailAppDB.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\RetailAppDB.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RetailAppDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\RetailAppDB.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RetailAppDB.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Database\sysdiagrams.cs">
+      <DependentUpon>RetailAppDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\USER.cs">
+      <DependentUpon>RetailAppDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -192,6 +240,30 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Prize\_prize.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="Database\RetailAppDB.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>RetailAppDB.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Database\RetailAppDB.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>RetailAppDB.edmx</DependentUpon>
+      <LastGenOutput>RetailAppDB.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Database\RetailAppDB.edmx.diagram">
+      <DependentUpon>RetailAppDB.edmx</DependentUpon>
+    </Content>
+    <Content Include="Database\RetailAppDB.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>RetailAppDB.edmx</DependentUpon>
+      <LastGenOutput>RetailAppDB.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
