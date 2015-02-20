@@ -3,6 +3,8 @@
 
 }
 
+@using RetailApp.Database;
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,8 +34,8 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
-<body>
-    <div class="container">
+<body class="bodyAdmin">
+    <div class="containerAdmin">
         <div class="col-xs-6">
             <h1>Listado de Usuarios</h1>
         </div>
@@ -48,27 +50,39 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <td>Token</td>
-                        <td>Apellido</td>
+                        <td>Email</td>
                         <td>Nombre</td>
-                        <td>Enviado</td>
-                        <td>Recibido</td>
+                        <td>Apellido</td>
+                        <td>Token</td>
+                        <td>VIP</td>
+                        
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>
-                            asdfsdafsdafds
+                        @foreach (USER u in (List<USER>)ViewBag.Listado)
+                        {
+
+                        <tr>
+                            <td>
+                                @u.Email
                             </td>
-                        <td>
-                            Leon
-                        </td>
-                        <td>
-                            Sebastian
-                        </td>
-                        <td>no</td>
-                        <td>no</td>
-                    </tr>
+                            <td>
+                                @u.Nombre
+                            </td>
+                            <td>
+                                @u.Apellido
+                            </td>
+                            <td>
+                                @u.Token
+                            </td>
+                            <td>
+                                @u.Vip
+                            </td>
+                        </tr>
+
+                        }
+
                 <tbody>
             </table>
     </div>

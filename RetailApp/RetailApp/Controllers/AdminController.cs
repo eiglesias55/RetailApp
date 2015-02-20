@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using RetailApp.Database;
 
 namespace RetailApp.App_Start
 {
@@ -13,9 +14,12 @@ namespace RetailApp.App_Start
         
         public ActionResult Index()
         {
-            //Should show main page with buttons: "Generar Token" 
-            //List all users
-
+           
+             using (var usr = new RetailAppEntities1())
+            {
+                List<USER> l = usr.USER.ToList();
+                ViewBag.Listado= l;
+            }
             return View();
         }
 
