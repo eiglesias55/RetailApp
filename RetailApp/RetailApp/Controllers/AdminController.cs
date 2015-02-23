@@ -15,7 +15,7 @@ namespace RetailApp.App_Start
         public ActionResult Index()
         {
            
-             using (var usr = new RetailAppEntities1())
+            using (var usr = new RetailAppEntities1())
             {
                 List<USER> l = usr.USER.ToList();
                 ViewBag.Listado= l;
