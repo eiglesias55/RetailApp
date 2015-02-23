@@ -8,11 +8,15 @@ html {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+    height:100%;
 }
 
 body {
+    left:50%;
+    top:50%;
     background:transparent;
-
+    margin:0px;
+    height:100%;
 }
 
 
