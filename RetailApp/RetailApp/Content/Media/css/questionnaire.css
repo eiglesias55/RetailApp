@@ -151,8 +151,6 @@ li.active:after {
     color: #ffffff;
 }
 
-
-
 @media( max-width : 585px ){
     
 .board {
@@ -190,7 +188,8 @@ li.active:after {
 .question-header {
     padding:3%;
     text-align:center;  
-    font-size:300%;
+    font-size:200%;
+    font-weight:bold;
     border-bottom:1px solid white;
     width:100%;
     height:25%;
@@ -198,31 +197,18 @@ li.active:after {
 
 .question-choices {
     padding:5%;
-    
 }
 
-.custom-radio {
-    width:30px;
-    height:30px;  
-    background-color:none;
-   
-    
-}
-
-.custom-radio:checked {
-        width: 30px;
-        height: 30px;
-        color: orange;
+.choice {
+    padding-left:3%;
+    border-radius:5px;
+    border:1px outset;
+    margin-bottom:0.5em;
 }
 
 .question-choices {
     display:block;
 }
-
-
-.choice {
-    height:20%;
-} 
 
 board-inner {
     border: 3px solid #022248;
@@ -233,7 +219,7 @@ board-inner {
     border-bottom:none !important;  
 }
 
-.email-button {
+.send-button {
 	background:#022248;
     border-radius: 3px;
 	text-indent:0px;
@@ -245,21 +231,43 @@ board-inner {
 	font-style:normal;
 	height:35px;
 	line-height:35px;
-	width:80%;
+	width:90%;
 	text-decoration:none;
 	text-align:center;
     transition: 0.5s;
+
 }
 
-.email-button:hover {
+.send-button:hover {
 	background:#1e62d0;
     color:white;
     text-decoration: none;
     transition: 0.5s;
 }
 
-.email-button:active {
+.send-button:active {
         position: relative;
         top: 1px;
         text-emphasis-color:white;
 }
+
+label {   
+ 
+    padding-left: 25px;  
+    margin-right: 15px;  
+    font-size: 100%px;  
+}  
+
+input[type=radio]:checked + label {  
+    content: "";  
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, .2);  
+    font-size: 110%px;  
+    color: black; 
+    font-weight:bold;   
+}  
+
+.radio{  
+    display:inline;
+    height:30px; 
+    width:30px; 
+} 
