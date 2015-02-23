@@ -41,7 +41,9 @@
         </div>
         <div class="col-xs-6" id="buttonsAdmin">
             <div class="btn-group" role="group" aria-label="...">
-                <button type="button" class="btn btn-default">Generar Token</button>
+                
+                    <button type="button" class="btn btn-default"><a href="@Url.Action("generateToken","Admin")">Generar Token</a></button>
+                
                 <button type="button" class="btn btn-default">Estatus de Usuarios</button>
                 <button type="button" class="btn btn-default">Enviar Email</button>
                 <button type="button" class="btn btn-default">Re-enviar Email</button>
@@ -55,7 +57,7 @@
                         <td>Apellido</td>
                         <td>Token</td>
                         <td>VIP</td>
-                        
+
                     </tr>
                 </thead>
                 <tbody>

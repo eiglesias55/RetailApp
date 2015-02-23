@@ -23,15 +23,17 @@ namespace RetailApp.App_Start
             return View();
         }
 
-        [Authorize(Users = "lprieto,mpaniego,wsaettone,mrfuentes,aleon,eiglesias")]
-        public ActionResult generateToken()
-        {   
-            //Loop through all users asking if there's a token associated
-            //Generate Token
-            //Save it to the database
 
-            string token = Convert.ToBase64String(Guid.NewGuid().ToByteArray());
-            return View();
+        public ActionResult generateToken()
+        {
+            using (var usr = new RetailAppEntities1())
+            {
+                List<USER> l = usr.USER.Where(m => m.Token != null).ToList();
+                //string token = Convert.ToBase64String(Guid.NewGuid().ToByteArray());    
+                ViewBag.Listado = l;
+            }
+
+            return RedirectToAction("Index");
         }
 
         [Authorize(Users = "lprieto,mpaniego,wsaettone,mrfuentes,aleon,eiglesias")]
