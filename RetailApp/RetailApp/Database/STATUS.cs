@@ -12,16 +12,16 @@ namespace RetailApp.Database
     using System;
     using System.Collections.Generic;
     
-    public partial class USER
+    public partial class STATUS
     {
-        public string Email { get; set; }
-        public string Nombre { get; set; }
-        public string Apellido { get; set; }
-        public string Token { get; set; }
-        public string Vip { get; set; }
-        public int Status { get; set; }
+        public STATUS()
+        {
+            this.USER = new HashSet<USER>();
+        }
     
-        public virtual RESPUESTA RESPUESTA { get; set; }
-        public virtual STATUS STATUS1 { get; set; }
+        public int Status1 { get; set; }
+        public string Descripcion { get; set; }
+    
+        public virtual ICollection<USER> USER { get; set; }
     }
 }

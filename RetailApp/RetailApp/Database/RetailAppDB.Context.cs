@@ -13,10 +13,10 @@ namespace RetailApp.Database
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class RetailAppEntities1 : DbContext
+    public partial class RetailAppEntities2 : DbContext
     {
-        public RetailAppEntities1()
-            : base("name=RetailAppEntities1")
+        public RetailAppEntities2()
+            : base("name=RetailAppEntities2")
         {
         }
     
@@ -29,6 +29,7 @@ namespace RetailApp.Database
         public virtual DbSet<OPCION> OPCION { get; set; }
         public virtual DbSet<PREGUNTA> PREGUNTA { get; set; }
         public virtual DbSet<RESPUESTA> RESPUESTA { get; set; }
+        public virtual DbSet<STATUS> STATUS { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<USER> USER { get; set; }
     }

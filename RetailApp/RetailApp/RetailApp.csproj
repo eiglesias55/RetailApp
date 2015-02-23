@@ -129,6 +129,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PrizeController.cs" />
     <Compile Include="Controllers\QuestionnaireController.cs" />
+    <Compile Include="Controllers\StatusApiController.cs" />
     <Compile Include="Database\ADMIN.cs">
       <DependentUpon>RetailAppDB.tt</DependentUpon>
     </Compile>
@@ -155,6 +156,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>RetailAppDB.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Database\STATUS.cs">
+      <DependentUpon>RetailAppDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Database\sysdiagrams.cs">
       <DependentUpon>RetailAppDB.tt</DependentUpon>

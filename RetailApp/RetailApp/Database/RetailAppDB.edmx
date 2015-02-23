@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="RetailAppModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="RetailAppModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="ADMIN">
           <Key>
             <PropertyRef Name="Email" />
@@ -38,6 +38,13 @@
           <Property Name="Numero" Type="int" Nullable="false" />
           <Property Name="Id" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="STATUS">
+          <Key>
+            <PropertyRef Name="Status" />
+          </Key>
+          <Property Name="Status" Type="int" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -55,8 +62,9 @@
           <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Apellido" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Token" Type="varchar(max)" />
+          <Property Name="Token" Type="varchar" MaxLength="200" />
           <Property Name="Vip" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="Status" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="FK_RESPUESTA_OPCION">
           <End Role="OPCION" Type="Self.OPCION" Multiplicity="1" />
@@ -96,11 +104,24 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_USER_STATUS">
+          <End Role="STATUS" Type="Self.STATUS" Multiplicity="1" />
+          <End Role="USER" Type="Self.USER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="STATUS">
+              <PropertyRef Name="Status" />
+            </Principal>
+            <Dependent Role="USER">
+              <PropertyRef Name="Status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="RetailAppModelStoreContainer">
           <EntitySet Name="ADMIN" EntityType="Self.ADMIN" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OPCION" EntityType="Self.OPCION" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PREGUNTA" EntityType="Self.PREGUNTA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RESPUESTA" EntityType="Self.RESPUESTA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="STATUS" EntityType="Self.STATUS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="USER" EntityType="Self.USER" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_RESPUESTA_OPCION" Association="Self.FK_RESPUESTA_OPCION">
@@ -115,9 +136,12 @@
             <End Role="USER" EntitySet="USER" />
             <End Role="RESPUESTA" EntitySet="RESPUESTA" />
           </AssociationSet>
+          <AssociationSet Name="FK_USER_STATUS" Association="Self.FK_USER_STATUS">
+            <End Role="STATUS" EntitySet="STATUS" />
+            <End Role="USER" EntitySet="USER" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="RetailAppModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -159,6 +183,14 @@
           <NavigationProperty Name="PREGUNTA" Relationship="Self.FK_RESPUESTA_PREGUNTA" FromRole="RESPUESTA" ToRole="PREGUNTA" />
           <NavigationProperty Name="USER" Relationship="Self.FK_RESPUESTA_USER" FromRole="RESPUESTA" ToRole="USER" />
         </EntityType>
+        <EntityType Name="STATUS">
+          <Key>
+            <PropertyRef Name="Status1" />
+          </Key>
+          <Property Name="Status1" Type="Int32" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="USER" Relationship="Self.FK_USER_STATUS" FromRole="STATUS" ToRole="USER" />
+        </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -176,9 +208,11 @@
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Token" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Token" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="Vip" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
           <NavigationProperty Name="RESPUESTA" Relationship="Self.FK_RESPUESTA_USER" FromRole="USER" ToRole="RESPUESTA" />
+          <NavigationProperty Name="STATUS1" Relationship="Self.FK_USER_STATUS" FromRole="USER" ToRole="STATUS" />
         </EntityType>
         <Association Name="FK_RESPUESTA_OPCION">
           <End Role="OPCION" Type="Self.OPCION" Multiplicity="1" />
@@ -218,11 +252,24 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="RetailAppEntities1" annotation:LazyLoadingEnabled="true">
+        <Association Name="FK_USER_STATUS">
+          <End Role="STATUS" Type="Self.STATUS" Multiplicity="1" />
+          <End Role="USER" Type="Self.USER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="STATUS">
+              <PropertyRef Name="Status1" />
+            </Principal>
+            <Dependent Role="USER">
+              <PropertyRef Name="Status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="RetailAppEntities2" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="ADMIN" EntityType="Self.ADMIN" />
           <EntitySet Name="OPCION" EntityType="Self.OPCION" />
           <EntitySet Name="PREGUNTA" EntityType="Self.PREGUNTA" />
           <EntitySet Name="RESPUESTA" EntityType="Self.RESPUESTA" />
+          <EntitySet Name="STATUS" EntityType="Self.STATUS" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="USER" EntityType="Self.USER" />
           <AssociationSet Name="FK_RESPUESTA_OPCION" Association="Self.FK_RESPUESTA_OPCION">
@@ -237,13 +284,17 @@
             <End Role="USER" EntitySet="USER" />
             <End Role="RESPUESTA" EntitySet="RESPUESTA" />
           </AssociationSet>
+          <AssociationSet Name="FK_USER_STATUS" Association="Self.FK_USER_STATUS">
+            <End Role="STATUS" EntitySet="STATUS" />
+            <End Role="USER" EntitySet="USER" />
+          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="RetailAppModelStoreContainer" CdmEntityContainer="RetailAppEntities1">
+        <EntityContainerMapping StorageEntityContainer="RetailAppModelStoreContainer" CdmEntityContainer="RetailAppEntities2">
           <EntitySetMapping Name="ADMIN">
             <EntityTypeMapping TypeName="RetailAppModel.ADMIN">
               <MappingFragment StoreEntitySet="ADMIN">
@@ -280,6 +331,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="STATUS">
+            <EntityTypeMapping TypeName="RetailAppModel.STATUS">
+              <MappingFragment StoreEntitySet="STATUS">
+                <ScalarProperty Name="Status1" ColumnName="Status" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
             <EntityTypeMapping TypeName="RetailAppModel.sysdiagrams">
               <MappingFragment StoreEntitySet="sysdiagrams">
@@ -299,6 +358,7 @@
                 <ScalarProperty Name="Apellido" ColumnName="Apellido" />
                 <ScalarProperty Name="Token" ColumnName="Token" />
                 <ScalarProperty Name="Vip" ColumnName="Vip" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
