@@ -56,7 +56,13 @@ namespace RetailApp.App_Start
         public ActionResult checkStatus()
         {
             //This one will check the users status
-            return View();
+            using (var usr = new RetailAppEntities2())
+            {
+                List<USER> l = usr.USER.Where(m => m.Status == 0 || m.Status == 2).ToList();
+                ViewBag.Listado = l;
+            }
+            return RedirectToAction("Index");
+            
         }
 
         
@@ -70,6 +76,7 @@ namespace RetailApp.App_Start
         public ActionResult sendEmail()
         {
             //Send email to all users -- on request...
+
             /*MailDefinition md = new MailDefinition();*/
             var msg = new MailMessage();
             MailAddress from = new MailAddress("eiglesias@grupoassa.com");
@@ -88,6 +95,7 @@ namespace RetailApp.App_Start
             smtpClient.Credentials = new System.Net.NetworkCredential("eiglesias", "mei42316327");
             smtpClient.Send(msg);
             return View();         
+
         }
     }
 }
