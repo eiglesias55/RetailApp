@@ -55,7 +55,13 @@ namespace RetailApp.App_Start
         public ActionResult checkStatus()
         {
             //This one will check the users status
-            return View();
+            using (var usr = new RetailAppEntities2())
+            {
+                List<USER> l = usr.USER.Where(m => m.Status == 0 || m.Status == 2).ToList();
+                ViewBag.Listado = l;
+            }
+            return RedirectToAction("Index");
+            
         }
 
         
@@ -70,12 +76,12 @@ namespace RetailApp.App_Start
         {
             //Send email to all users -- on request...
             MailDefinition md = new MailDefinition();
-            md.From = "test@domain.com"; 
+            md.From = "aleon@grupoassa.com"; 
             md.IsBodyHtml = true; 
             md.Subject = "Test of MailDefinition"; 
             ListDictionary replacements = new ListDictionary(); 
             replacements.Add("", "Martin"); replacements.Add("", "Denmark"); string body = "Hello **You're from .";
-            MailMessage msg = md.CreateMailMessage("you@anywhere.com", replacements, body, new System.Web.UI.Control());
+            MailMessage msg = md.CreateMailMessage("eiglesias@grupoassa.com", replacements, body, new System.Web.UI.Control());
             return View();
         }
     }

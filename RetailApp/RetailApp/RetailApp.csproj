@@ -177,7 +177,6 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Content Include="Content\Media\Bootstrap\css\bootstrap-theme.min.css" />
     <Content Include="Content\Media\Bootstrap\css\bootstrap.min.css" />
-    <Content Include="Content\Media\Bootstrap\js\AdminButtons.js" />
     <Content Include="Content\Media\Bootstrap\js\bootstrap.min.js" />
     <Content Include="Content\Media\Bootstrap\js\button_functions.js" />
     <Content Include="Content\Media\Bootstrap\js\questionnaire.js" />
