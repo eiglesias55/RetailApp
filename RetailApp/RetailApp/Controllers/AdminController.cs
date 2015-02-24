@@ -76,25 +76,21 @@ namespace RetailApp.App_Start
         public ActionResult sendEmail()
         {
             //Send email to all users -- on request...
-
-            /*MailDefinition md = new MailDefinition();*/
-            var msg = new MailMessage();
-            MailAddress from = new MailAddress("eiglesias@grupoassa.com");
-
-            msg.From = (from);
-            msg.To.Add("iglesiasmatiasezequiel@yahoo.com.ar") ;
-            msg.IsBodyHtml = false; 
-            msg.Subject = "Test of MailDefinition";
-            msg.Body = "body";
-            /*ListDictionary replacements = new ListDictionary(); */
-            /*string body = "Test email body..";
-            string to = "iglesiasmatiasezequiel@yahoo.com.ar";
-            string subject = "Test mail";   */        
-            SmtpClient smtpClient = new SmtpClient();                          
-            smtpClient.Host = "mail.grupoassa.com";
-            smtpClient.Credentials = new System.Net.NetworkCredential("eiglesias", "mei42316327");
-            smtpClient.Send(msg);
-            return View();         
+            using (var usr = new RetailAppEntities2())
+            {
+                List<USER> l = usr.USER.Where(m => m.Status == 0).ToList();
+                foreach (USER user in l)
+                {
+                    var msg = new MailMessage();
+                    msg.To.Add(user.Email);
+                    msg.IsBodyHtml = false;
+                    msg.Subject ="Test email";
+                    msg.Body = "Hola " + user.Apellido + ", " + user.Nombre + " te ganaste un premio.. ";
+                    SmtpClient smtpClient = new SmtpClient();
+                    smtpClient.Send(msg);
+                }
+            }
+            return RedirectToAction("Index");         
 
         }
     }
