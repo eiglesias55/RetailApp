@@ -7,6 +7,7 @@ using RetailApp.Database;
 using System.Web.UI.WebControls;
 using System.Collections.Specialized;
 using System.Net.Mail;
+using System.Web.UI;
 
 
 namespace RetailApp.App_Start
@@ -69,14 +70,24 @@ namespace RetailApp.App_Start
         public ActionResult sendEmail()
         {
             //Send email to all users -- on request...
-            MailDefinition md = new MailDefinition();
-            md.From = "test@domain.com"; 
-            md.IsBodyHtml = true; 
-            md.Subject = "Test of MailDefinition"; 
-            ListDictionary replacements = new ListDictionary(); 
-            replacements.Add("", "Martin"); replacements.Add("", "Denmark"); string body = "Hello **You're from .";
-            MailMessage msg = md.CreateMailMessage("you@anywhere.com", replacements, body, new System.Web.UI.Control());
-            return View();
+            /*MailDefinition md = new MailDefinition();*/
+            var msg = new MailMessage();
+            MailAddress from = new MailAddress("eiglesias@grupoassa.com");
+
+            msg.From = (from);
+            msg.To.Add("iglesiasmatiasezequiel@yahoo.com.ar") ;
+            msg.IsBodyHtml = false; 
+            msg.Subject = "Test of MailDefinition";
+            msg.Body = "body";
+            /*ListDictionary replacements = new ListDictionary(); */
+            /*string body = "Test email body..";
+            string to = "iglesiasmatiasezequiel@yahoo.com.ar";
+            string subject = "Test mail";   */        
+            SmtpClient smtpClient = new SmtpClient();                          
+            smtpClient.Host = "mail.grupoassa.com";
+            smtpClient.Credentials = new System.Net.NetworkCredential("eiglesias", "mei42316327");
+            smtpClient.Send(msg);
+            return View();         
         }
     }
 }
