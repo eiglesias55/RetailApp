@@ -21,9 +21,14 @@
     <link href="@Url.Content("~/Content/Media/css/Layout.css")" rel="stylesheet">
     <link href="@Url.Content("~/Content/Media/css/signin2.css")" rel="stylesheet" />
 
-    <script src="../Content/Media/JQuery/jquery-2.1.3.min.js" type="text/javascript"></script>
+    
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="~/Content/Media/Bootstrap/js/bootstrap.min.js"></script>
+    
     <script type="text/javascript" src="../Content/Media/Bootstrap/js/button_functions.js"></script>
-    <script type="text/javascript" src="../Content/Media/Bootstrap/js/fbLogin.js"></script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -33,196 +38,8 @@
     <![endif]-->
 </head>
 <body>
-      
-    <!--login modal-->
-    <div id="loginModal" class="modal show" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">                 
-                    <h1 class="text-center"><img src="../Content/Media/Img/gA_logo.jpg" width="250" height="200" /></h1>
-                </div>        
-                <div id="modal-toSlide">
-                    <div id="modal-facebook">
-                        <div class="modal-body">
-                            <button class="button" onclick="checkFacebookLogin();">
-                                <div class="custom-logo">f</div><div class="custom-button">Sign in with Facebook</div>
-                            </button>
-                        </div>
-                        <div class="modal-footer">
-                            <span class="pull-right"><a href="#" class="link-style">No deseas loguear con facebook?</a></span>
-                        </div>
-                    </div>
 
-                    <div id="modal-email">
-                        <div class="modal-body">
-                            <form action='../Home/loginWithEmail' method='POST'>
-                                <div class='form-group'>
-                                    <div id='email-title'>
-                                        <label for='inputEmail3'>Email address</label>
-                                    </div>
-                                    <div class='text-center' id='email-box'>
-                                        <input type='text' class='form-control' id='email' placeholder='Enter your email' value=''>
-                                    </div>
-                                </div>
-                                <div class='text-center'>
-                                    <input type='submit' value='Enviar' class='email-button' />
-                                </div>
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                            <span class="pull-right"><a href='#' class='link-style'>Volver a loguear con facebook?</a></span>
-                        </div>
-                    </div>
-                </div>      
-            </div>
-        </div>
-    </div>
+    @RenderBody()
 
-    <div>
-        @RenderBody()
-    </div>
-
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="~/Content/Media/Bootstrap/js/bootstrap.min.js"></script>
-    
-
-    <div id="fb-root"></div>
-    <div id="status"></div>
-    
-    <script>
-        var token;
-        var likes;
-        var numOfPages = 0;
-        var found = 1;
-       
-        window.fbAsyncInit = function () {
-            FB.init({ appId: '444934948997589', status: true, cookie: true, xfbml: true,version:2.1 });
-
-        };
-        (function () {
-            var e = document.createElement('script'); e.async = true;
-            e.src = document.location.protocol +
-              '//connect.facebook.net/en_US/all.js';
-            document.getElementById('fb-root').appendChild(e);
-        }());
-
-        function fetchUserDetail() {
-            FB.api('/me/likes', function (response) {
-                likes = response.data;
-                var category = [];
-                category.push(new PopulateArray("Other", "0"));
-                category.push(new PopulateArray("Entrepreneur", "0"));
-                category.push(new PopulateArray("Government organization", "0"));
-                category.push(new PopulateArray("Website", "0"));
-                category.push(new PopulateArray("Local business", "0"));
-                category.push(new PopulateArray("Company", "0"));
-                category.push(new PopulateArray("Community", "0"));
-                category.push(new PopulateArray("Consulting/business services", "0"));
-                category.push(new PopulateArray("Tv show", "0"));
-                category.push(new PopulateArray("Local/travel website", "0"));
-                category.push(new PopulateArray("University", "0"));
-                category.push(new PopulateArray("Entertainment website", "0"));
-                category.push(new PopulateArray("Just for fun", "0"));
-                category.push(new PopulateArray("Musician/band", "0"));
-                category.push(new PopulateArray("Tv channel", "0"));
-                category.push(new PopulateArray("Comedian", "0"));
-                category.push(new PopulateArray("Athlete", "0"));
-                category.push(new PopulateArray("Sports team", "0"));
-                category.push(new PopulateArray("Media/news/publishing", "0"));
-                category.push(new PopulateArray("Movie", "0"));
-                category.push(new PopulateArray("Product/service", "0"));
-                category.push(new PopulateArray("Comedian", "0"));
-                
-              
-                var len = category.length;
-                alert("Total number of likes: " + len);
-                var uno = 1;
-                for (x in likes) {
-                    found = 1;
-                        for (index = 0; index < category.length; index++) {
-                            if (likes[x].category === category[index].categoryName) {
-                                category[index].likeNumber = category[index].likeNumber + uno;
-                                found = 0;
-                                }
-                            
-                    }
-                        if (Boolean(found)) {
-                            category.push(new PopulateArray(likes[x].category, "0"));
-                            }
-                }
-
-                //Loop the whole array looking for the max number of likes and category to display
-                var maxLikes = 0;
-                for (y in category) {
-                    if (maxLikes < category[y].likeNumber) {
-                        maxLikes = category[y].likeNumber;
-                        cat = category[y].categoryName;
-                    }
-                }
-
-                alert("You're a very " + cat + " Person...  :)");
-
-            }, { access_token: token });
-        }
-
-        function PopulateArray(categoryName, likeNumber) {
-            this.categoryName = categoryName;
-            this.likeNumber = likeNumber;
-        };
-
-        /*(function fireSpinner(d) {
-            
-            d.getElementById('spinner').style.display = 'block';
-            d.getElementById('loading2').style.display = 'block';
-        });*/
-        
-
-        function checkFacebookLogin() {
-            //fireSpinner(d);
-            FB.getLoginStatus(function (response) {
-                if (response.status === 'connected') {
-                    fetchUserDetail();
-                }
-                else {
-                    initiateFBLogin();
-                }
-            });
-        }
-
-        function initiateFBLogin() {
-            FB.login(function (response) {
-                token = FB.getAuthResponse()['accessToken'];
-               fetchUserDetail();
-            },{scope: "public_profile,email,user_likes"});
-        }
-
-        </script>
-
-    <!--        Spinner    
-
-    <div class="spinner">
-        <div class="spinner-container container1">
-            <div class="circle1"></div>
-            <div class="circle2"></div>
-            <div class="circle3"></div>
-            <div class="circle4"></div>
-        </div>
-        <div class="spinner-container container2">
-            <div class="circle1"></div>
-            <div class="circle2"></div>
-            <div class="circle3"></div>
-            <div class="circle4"></div>
-        </div>
-        <div class="spinner-container container3">
-            <div class="circle1"></div>
-            <div class="circle2"></div>
-            <div class="circle3"></div>
-            <div class="circle4"></div>
-        </div>
-    </div>
-        -->
-    
 </body>
 </html>
