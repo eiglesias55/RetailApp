@@ -1,5 +1,8 @@
 $(document).ready(function () {
     $('#loginModal div.modal-dialog div#modal-email').hide(0);
+    $('#modal-toSlide').slideUp(0, function () {
+        $('#modal-toSlide').slideDown(1000);
+    });
 
     $('button.button').mouseenter(function () {
         $(this).css("background-color", "#1e62d0");
@@ -26,20 +29,20 @@ $(document).ready(function () {
     $('button.button').click(function () {   
     });
 
-    $('span.pull-right a').click(function () {
-        $('#modal-toSlide').slideUp(500, function () {
-            if ($('div.modal-content div.modal-toSlide div div.modal-footer span.pull-right a').text() === 'No deseas loguear con facebook?') {
-                alert($('div.modal-content div.modal-toSlide div div.modal-footer span.pull-right a').text());
-                $('#loginModal div.modal-dialog #modal-facebook').hide(0);
-                $('#loginModal div.modal-dialog #modal-email').show(0);
-            } else {
-                $('#loginModal div.modal-dialog #modal-email').hide(0);
-                $('#loginModal div.modal-dialog #modal-facebook').show(0);
-            }
-        });        
-        $('#modal-toSlide').slideDown(500);
-    });  
+    $('a').click(function () {
+        if ($(this).attr("id") === 'logFB') {
+            $('#modal-toSlide').slideUp(500, function () {
+                $('#modal-fb').hide(10);
+                $('#modal-email').show(0);
+            });
+            $('#modal-toSlide').slideDown(500);
+        }else{
+            $('#modal-toSlide').slideUp(500, function () {
+                $('#modal-email').hide(0);
+                $('#modal-fb').show(0);
+            });
+            $('#modal-toSlide').slideDown(500);
+        }     
+    });
+
 });
-
-
-
