@@ -37,20 +37,43 @@
     <!--login modal-->
     <div id="loginModal" class="modal show" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog">
-            <div class="modal-content" id="modal-toFade">
+            <div class="modal-content">
                 <div class="modal-header">                 
                     <h1 class="text-center"><img src="../Content/Media/Img/gA_logo.jpg" width="250" height="200" /></h1>
-                </div>         
-                <div id="modal-toSlide">        
-                    <div class="modal-body">  
-                         <button class="button" onclick="checkFacebookLogin();">
-                             <div class="custom-logo">f</div><div class="custom-button">Sign in with Facebook</div>
-                         </button>
-                    </div>  
-                    <div class="modal-footer">                
-                        <span class="pull-right"><a href="#" class="link-style">No deseas loguear con facebook?</a></span>
+                </div>        
+                <div id="modal-toSlide">
+                    <div id="modal-facebook">
+                        <div class="modal-body">
+                            <button class="button" onclick="checkFacebookLogin();">
+                                <div class="custom-logo">f</div><div class="custom-button">Sign in with Facebook</div>
+                            </button>
+                        </div>
+                        <div class="modal-footer">
+                            <span class="pull-right"><a href="#" class="link-style">No deseas loguear con facebook?</a></span>
+                        </div>
                     </div>
-                </div>    
+
+                    <div id="modal-email">
+                        <div class="modal-body">
+                            <form action='../Home/loginWithEmail' method='POST'>
+                                <div class='form-group'>
+                                    <div id='email-title'>
+                                        <label for='inputEmail3'>Email address</label>
+                                    </div>
+                                    <div class='text-center' id='email-box'>
+                                        <input type='text' class='form-control' id='email' placeholder='Enter your email' value=''>
+                                    </div>
+                                </div>
+                                <div class='text-center'>
+                                    <input type='submit' value='Enviar' class='email-button' />
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <span class="pull-right"><a href='#' class='link-style'>Volver a loguear con facebook?</a></span>
+                        </div>
+                    </div>
+                </div>      
             </div>
         </div>
     </div>
