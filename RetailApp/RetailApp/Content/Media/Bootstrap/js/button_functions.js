@@ -28,12 +28,13 @@ $(document).ready(function () {
 
     $('span.pull-right a').click(function () {
         $('#modal-toSlide').slideUp(500, function () {
-            if ($('#loginModal div.modal-dialog div.modal-footer span.pull-right a').text() === 'No deseas loguear con facebook?') {
-                $('#modal-facebook').hide(0);
-                $('#modal-email').show(0);                                            
+            if ($('div.modal-content div.modal-toSlide div div.modal-footer span.pull-right a').text() === 'No deseas loguear con facebook?') {
+                alert($('div.modal-content div.modal-toSlide div div.modal-footer span.pull-right a').text());
+                $('#loginModal div.modal-dialog #modal-facebook').hide(0);
+                $('#loginModal div.modal-dialog #modal-email').show(0);
             } else {
-                $('#modal-email').hide(0);
-                $('#modal-facebook').show(0);
+                $('#loginModal div.modal-dialog #modal-email').hide(0);
+                $('#loginModal div.modal-dialog #modal-facebook').show(0);
             }
         });        
         $('#modal-toSlide').slideDown(500);
