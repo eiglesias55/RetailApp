@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using System.Linq;
 using RetailApp.Database;
 using System.Web.UI.WebControls;
 using System.Collections.Specialized;
@@ -18,33 +17,30 @@ namespace RetailApp.App_Start
         //
         // GET: /Home/
 
-        public ActionResult Index()
+        public ActionResult Index(String Token)
         {
+            ViewBag.Token = Token;
             return View();
         }
 
-        public ActionResult loginWithEmail(FormCollection form)
-        {
-            using (var usr = new RetailAppEntities2())
-            {
 
-                var email = form["email"].ToString();
-                /*var text = usr.USER.Where(m => m.Email == form["inputEmail3"]);*/
-                
-                /*if(){
-                    
+        [HttpPost]
+        public ActionResult EmailLogin(String Email, String Token)
+        {
+            using (var csx = new RetailAppEntities2()) {
+                USER u = csx.USER.SingleOrDefault(user => user.Token == Token);
+                if (u != null)
+                {
+                    csx.Entry(u).State = System.Data.Entity.EntityState.Modified;
+                    u.Email = Email;
+                    csx.SaveChanges();
                 }
-                             
-                    var msg = new MailMessage();
-                    msg.To.Add(user.Email);
-                    msg.IsBodyHtml = false;
-                    msg.Subject = "Test email";
-                    msg.Body = "Hola " + user.Apellido + ", " + user.Nombre + " te ganaste un premio.. ";
-                    SmtpClient smtpClient = new SmtpClient();
-                    smtpClient.Send(msg);            
-            }*/
-                return RedirectToAction("Index");
+                else {
+                    throw new ApplicationException("El Token es invalido.");
+                }
             }
+            return RedirectToAction("Index","Questionnaire");
+
         }
         }
 }

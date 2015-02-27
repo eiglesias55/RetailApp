@@ -61,20 +61,20 @@
                     </div>
 
                     <div id="modal-email">
-                        <div class="modal-body">
-                            <form action='../Home/loginWithEmail' method='POST'>
-                                <div class='form-group'>
-                                    <div id='email-title'>
-                                        <label for='inputEmail3'>Email address</label>
-                                    </div>
+                        <div class="modal-body">                       
+                                <div id='email-title'>
+                                    <label for='inputEmail3'>Email address</label>
+                                </div>
+                                <form action="@Url.Action("EmailLogin","Home")" method="post">
                                     <div class='text-center' id='email-box'>
-                                        <input type='text' class='form-control' id='email' placeholder='Enter your email' value=''>
+                                        <input type='text' class='form-control' name="Email" placeholder='Enter your email' value=''>
                                     </div>
-                                </div>
-                                <div class='text-center'>
-                                    <input type='submit' value='Enviar' class='email-button' />
-                                </div>
-                            </form>
+                                    <div class='text-center'>
+                                        <input type='submit' value='Enviar' class='email-button' />
+                                        <input type="hidden" name="Token" value="@ViewBag.Token" />
+                                    </div>
+                                </form>
+
                         </div>
                         <div class="modal-footer">
                             <span class="pull-right"><a id="logEmail" href='#' class='link-style'>Volver a loguear con facebook?</a></span>
