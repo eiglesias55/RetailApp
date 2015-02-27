@@ -20,6 +20,24 @@ namespace RetailApp.App_Start
         public ActionResult Index(String Token)
         {
             ViewBag.Token = Token;
+            if (Token != null)
+            {
+                using (var csx = new RetailAppEntities())
+                {
+                    USER u = csx.USER.SingleOrDefault(user => user.Token == Token);
+
+                    if (u.Status == 1)
+                    {
+                        csx.Entry(u).State = System.Data.Entity.EntityState.Modified;
+                        u.Status = 2;
+                        u.Fecha = DateTime.Now;
+                        csx.SaveChanges();
+                    }
+                }
+            }
+            else {
+                throw new ApplicationException("El token es invalido.");
+            }
             return View();
         }
 
@@ -27,7 +45,7 @@ namespace RetailApp.App_Start
         [HttpPost]
         public ActionResult EmailLogin(String Email, String Token)
         {
-            using (var csx = new RetailAppEntities2()) {
+            using (var csx = new RetailAppEntities()) {
                 USER u = csx.USER.SingleOrDefault(user => user.Token == Token);
                 if (u != null)
                 {

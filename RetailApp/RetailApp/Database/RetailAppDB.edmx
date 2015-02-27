@@ -65,6 +65,8 @@
           <Property Name="Token" Type="varchar" MaxLength="200" />
           <Property Name="Vip" Type="char" MaxLength="10" Nullable="false" />
           <Property Name="Status" Type="int" Nullable="false" />
+          <Property Name="Fecha" Type="datetime" />
+          <Property Name="EmailSecundario" Type="varchar" MaxLength="50" />
         </EntityType>
         <Association Name="FK_RESPUESTA_OPCION">
           <End Role="OPCION" Type="Self.OPCION" Multiplicity="1" />
@@ -213,6 +215,8 @@
           <Property Name="Status" Type="Int32" Nullable="false" />
           <NavigationProperty Name="RESPUESTA" Relationship="Self.FK_RESPUESTA_USER" FromRole="USER" ToRole="RESPUESTA" />
           <NavigationProperty Name="STATUS1" Relationship="Self.FK_USER_STATUS" FromRole="USER" ToRole="STATUS" />
+          <Property Name="Fecha" Type="DateTime" Precision="3" />
+          <Property Name="EmailSecundario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK_RESPUESTA_OPCION">
           <End Role="OPCION" Type="Self.OPCION" Multiplicity="1" />
@@ -264,7 +268,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="RetailAppEntities2" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="RetailAppEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="ADMIN" EntityType="Self.ADMIN" />
           <EntitySet Name="OPCION" EntityType="Self.OPCION" />
           <EntitySet Name="PREGUNTA" EntityType="Self.PREGUNTA" />
@@ -294,7 +298,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="RetailAppModelStoreContainer" CdmEntityContainer="RetailAppEntities2">
+        <EntityContainerMapping StorageEntityContainer="RetailAppModelStoreContainer" CdmEntityContainer="RetailAppEntities">
           <EntitySetMapping Name="ADMIN">
             <EntityTypeMapping TypeName="RetailAppModel.ADMIN">
               <MappingFragment StoreEntitySet="ADMIN">
@@ -353,6 +357,8 @@
           <EntitySetMapping Name="USER">
             <EntityTypeMapping TypeName="RetailAppModel.USER">
               <MappingFragment StoreEntitySet="USER">
+                <ScalarProperty Name="EmailSecundario" ColumnName="EmailSecundario" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="Apellido" ColumnName="Apellido" />

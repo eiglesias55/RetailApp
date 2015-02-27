@@ -246,6 +246,9 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Views\Admin\Status.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
     <EntityDeploy Include="Database\RetailAppDB.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>RetailAppDB.Designer.cs</LastGenOutput>
