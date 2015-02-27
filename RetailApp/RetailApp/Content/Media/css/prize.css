@@ -5,3 +5,18 @@
     -o-background-size: cover;
     background-size: cover;
 }
+
+#reminder-text {
+    margin:5%;
+}
+
+.modal-header {
+    text-align:center;
+}
+
+.modal-body {
+    text-align:center;
+    padding:  auto;
+    display:block;
+}
+
