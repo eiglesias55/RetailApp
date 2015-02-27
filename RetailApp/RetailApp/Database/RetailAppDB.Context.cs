@@ -13,10 +13,10 @@ namespace RetailApp.Database
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class RetailAppEntities2 : DbContext
+    public partial class RetailAppEntities : DbContext
     {
-        public RetailAppEntities2()
-            : base("name=RetailAppEntities2")
+        public RetailAppEntities()
+            : base("name=RetailAppEntities")
         {
         }
     

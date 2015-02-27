@@ -20,7 +20,7 @@ namespace RetailApp.App_Start
         public ActionResult Index()
         {
            
-            using (var usr = new RetailAppEntities2())
+            using (var usr = new RetailAppEntities())
             {
                 List<USER> l = usr.USER.ToList();
                 ViewBag.Listado= l;
@@ -31,7 +31,7 @@ namespace RetailApp.App_Start
 
         public ActionResult generateToken()
         {
-            using (var usr = new RetailAppEntities2())
+            using (var usr = new RetailAppEntities())
             {
                 List<USER> l = usr.USER.Where(m => m.Token == "").ToList();
                 foreach (USER user in l) {
@@ -53,41 +53,76 @@ namespace RetailApp.App_Start
         }
 
         
-        public ActionResult checkStatus()
+        public ActionResult Status(String Status)
         {
-            //This one will check the users status
-            using (var usr = new RetailAppEntities2())
+            using (var csx = new RetailAppEntities())
             {
-                List<USER> l = usr.USER.Where(m => m.Status == 0 || m.Status == 2).ToList();
-                ViewBag.Listado = l;
+                List<STATUS> stats = csx.STATUS.ToList<STATUS>();
+                ViewBag.status = stats;
+
+                if (Status == null)
+                {
+                    //This one will check the users status
+                    List<USER> l = csx.USER.ToList();
+                    ViewBag.Listado = l;
+                }
+                else
+                {
+                    int status_int = int.Parse(Status);
+                    List<USER> l = csx.USER.Where(user => user.Status == status_int).ToList();
+                    ViewBag.Listado = l;
+                }
             }
-            return RedirectToAction("Index");
+            
+            return View();
             
         }
 
         
         public ActionResult reSendEmail()
         {
-            //Will send email only to the users that haven't respond yet
-            return View();
+            //Send email to all users -- on request...
+            using (var csx = new RetailAppEntities())
+            {
+                List<USER> l = csx.USER.Where(m => m.Status == 0).ToList();
+                foreach (USER user in l)
+                {
+                    csx.Entry(user).State = System.Data.Entity.EntityState.Modified;
+                    user.Status = 1;
+                    var msg = new MailMessage();
+                    msg.To.Add(user.Email);
+                    msg.IsBodyHtml = false;
+                    msg.Subject = "Test email";
+                    msg.Body = "Hola " + user.Apellido + ", " + user.Nombre + " te ganaste un premio.. " + "Click on the following link:  http://localhost:49877/?Token=" + user.Token;
+                    SmtpClient smtpClient = new SmtpClient();
+                    smtpClient.Send(msg);
+                    csx.SaveChanges();
+
+                }
+            }
+            return RedirectToAction("Index");         
         }
 
         
         public ActionResult sendEmail()
         {
             //Send email to all users -- on request...
-            using (var usr = new RetailAppEntities2())
+            using (var csx = new RetailAppEntities())
             {
-                List<USER> l = usr.USER.Where(m => m.Status == 0).ToList();
+                List<USER> l = csx.USER.Where(m => m.Status == 0).ToList();
                 foreach (USER user in l)
                 {
+                    csx.Entry(user).State = System.Data.Entity.EntityState.Modified;
+                    user.Status = 1;
                     var msg = new MailMessage();
                     msg.To.Add(user.Email);
                     msg.IsBodyHtml = false;
                     msg.Subject ="Test email";
-                    msg.Body = "Hola " + user.Apellido + ", " + user.Nombre + " te ganaste un premio.. ";
+                    msg.Body = "Hola " + user.Apellido + ", " + user.Nombre + " te ganaste un premio.. " + "Click on the following link:  http://localhost:49877/?Token=" +user.Token ;
                     SmtpClient smtpClient = new SmtpClient();
                     smtpClient.Send(msg);
+                    csx.SaveChanges();
+                    
                 }
             }
             return RedirectToAction("Index");         

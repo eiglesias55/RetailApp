@@ -12,7 +12,7 @@ namespace RetailApp.Controllers
     {
         [HttpGet]
         public String GetStatus(String id) {
-            using (var csx = new RetailAppEntities2()) {
+            using (var csx = new RetailAppEntities()) {
                 USER user = csx.USER.Where(u => u.Token == id).SingleOrDefault();
                 if (user != null)
                 {
