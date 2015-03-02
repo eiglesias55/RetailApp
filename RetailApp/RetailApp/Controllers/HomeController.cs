@@ -50,7 +50,12 @@ namespace RetailApp.App_Start
                 if (u != null)
                 {
                     csx.Entry(u).State = System.Data.Entity.EntityState.Modified;
-                    u.Email = Email;
+                    var recordEmail = string.Compare(Email, u.Email);
+                    if (recordEmail != 0) {
+                        u.EmailSecundario = Email;
+                    }
+                    u.Status = 4;
+                    u.Fecha = DateTime.Now;
                     csx.SaveChanges();
                 }
                 else {

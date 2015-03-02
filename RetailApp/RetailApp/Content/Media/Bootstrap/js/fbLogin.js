@@ -17,6 +17,7 @@ window.fbAsyncInit = function () {
 function fetchUserDetail() {
     FB.api('/me/likes', function (response) {
         likes = response.data;
+        
         var category = [];
         category.push(new PopulateArray("Other", "0"));
         category.push(new PopulateArray("Entrepreneur", "0"));
@@ -41,11 +42,9 @@ function fetchUserDetail() {
         category.push(new PopulateArray("Product/service", "0"));
         category.push(new PopulateArray("Comedian", "0"));
 
-
-        var len = category.length;
-        alert("Total number of likes: " + len);
         var uno = 1;
         for (x in likes) {
+         
             found = 1;
             for (index = 0; index < category.length; index++) {
                 if (likes[x].category === category[index].categoryName) {
@@ -58,7 +57,7 @@ function fetchUserDetail() {
                 category.push(new PopulateArray(likes[x].category, "0"));
             }
         }
-
+        alert(x+1);
         //Loop the whole array looking for the max number of likes and category to display
         var maxLikes = 0;
         for (y in category) {

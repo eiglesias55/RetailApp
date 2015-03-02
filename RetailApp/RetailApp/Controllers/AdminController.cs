@@ -42,6 +42,7 @@ namespace RetailApp.App_Start
                     token = token.Replace("=", "");
                     token = token.Replace("+", "");
                     user.Token = token;
+                    user.Fecha = DateTime.Now;
 
                     usr.SaveChanges();
                 }
@@ -114,11 +115,12 @@ namespace RetailApp.App_Start
                 {
                     csx.Entry(user).State = System.Data.Entity.EntityState.Modified;
                     user.Status = 1;
+                    user.Fecha = DateTime.Now;
                     var msg = new MailMessage();
                     msg.To.Add(user.Email);
                     msg.IsBodyHtml = false;
                     msg.Subject ="Test email";
-                    msg.Body = "Hola " + user.Apellido + ", " + user.Nombre + " te ganaste un premio.. " + "Click on the following link:  http://localhost:49877/?Token=" +user.Token ;
+                    msg.Body = "Hola " + user.Nombre + " " + user.Apellido + " te ganaste un premio.. " + "Click on the following link:  http://localhost:49877/?Token=" + user.Token;
                     SmtpClient smtpClient = new SmtpClient();
                     smtpClient.Send(msg);
                     csx.SaveChanges();
