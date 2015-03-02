@@ -7,7 +7,7 @@
       <Diagram DiagramId="5e006238ad704211ad27f2cf7aaee72f" Name="Diagram1">
         <EntityTypeShape EntityType="RetailAppModel.ADMIN" Width="1.5" PointX="5.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="RetailAppModel.OPCION" Width="1.5" PointX="3" PointY="4.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="RetailAppModel.PREGUNTA" Width="1.5" PointX="3" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RetailAppModel.PREGUNTA" Width="1.5" PointX="3.125" PointY="7.25" IsExpanded="true" />
         <EntityTypeShape EntityType="RetailAppModel.RESPUESTA" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
         <EntityTypeShape EntityType="RetailAppModel.STATUS" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
         <EntityTypeShape EntityType="RetailAppModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
@@ -16,6 +16,7 @@
         <AssociationConnector Association="RetailAppModel.FK_RESPUESTA_PREGUNTA" ManuallyRouted="false" />
         <AssociationConnector Association="RetailAppModel.FK_RESPUESTA_USER" ManuallyRouted="false" />
         <AssociationConnector Association="RetailAppModel.FK_USER_STATUS" ManuallyRouted="false" />
+        <AssociationConnector Association="RetailAppModel.FK_OPCION_PREGUNTA" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

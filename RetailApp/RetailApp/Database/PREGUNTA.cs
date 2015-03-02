@@ -17,11 +17,13 @@ namespace RetailApp.Database
         public PREGUNTA()
         {
             this.RESPUESTA = new HashSet<RESPUESTA>();
+            this.OPCION = new HashSet<OPCION>();
         }
     
         public int Id { get; set; }
         public string Pregunta1 { get; set; }
     
         public virtual ICollection<RESPUESTA> RESPUESTA { get; set; }
+        public virtual ICollection<OPCION> OPCION { get; set; }
     }
 }
