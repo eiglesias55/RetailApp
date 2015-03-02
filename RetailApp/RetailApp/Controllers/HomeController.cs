@@ -19,6 +19,7 @@ namespace RetailApp.App_Start
 
         public ActionResult Index(String Token)
         {
+            
             ViewBag.Token = Token;
             if (Token != null)
             {
@@ -34,11 +35,12 @@ namespace RetailApp.App_Start
                         csx.SaveChanges();
                     }
                 }
+                return View();
             }
             else {
-                throw new ApplicationException("El token es invalido.");
+                throw new ApplicationException("El token es invalido, Por favor acceda desde el link en su mail.");
             }
-            return View();
+            
         }
 
 

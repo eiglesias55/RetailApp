@@ -1,0 +1,75 @@
+﻿@{
+    ViewBag.Title = "Error";
+}
+
+@model System.Web.Mvc.HandleErrorInfo
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewBag.Title</title>
+
+    <!-- Icon -->
+    <link rel="icon" href="../Content/Media/Img/icon_gA.png" type="image/png">
+
+    <!-- Bootstrap -->
+    <link href="@Url.Content("~/Content/Media/Bootstrap/css/bootstrap.min.css")" rel="stylesheet">
+    <link href="@Url.Content("~/Content/Media/Bootstrap/css/bootstrap-theme.min.css")" rel="stylesheet">
+    <link href="@Url.Content("~/Content/Media/css/carrousel.css")" rel="stylesheet">
+    <link href="@Url.Content("~/Content/Media/css/Layout.css")" rel="stylesheet">
+    <link href="@Url.Content("~/Content/Media/css/signin2.css")" rel="stylesheet" />
+
+
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="@Url.Content("~/Content/Media/Bootstrap/js/bootstrap.min.js")"></script>
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+    <!--login modal-->
+    <div id="loginModal" class="modal show" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="text-center"><img src="../Content/Media/Img/gA_logo.jpg" width="250" height="200" /></h1>
+                </div>
+                <div id="modal-toSlide">
+                    <div id="modal-fb">
+                        <div class="modal-body">
+                            <h2>Error</h2>
+                            <p>@{
+                                var e = Model.Exception;
+                                while (e.InnerException != null)
+                                {
+                                    e = e.InnerException;
+                                }
+                            }@e.Message </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
+
+
+
+
+
+
