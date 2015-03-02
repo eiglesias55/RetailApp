@@ -51,7 +51,7 @@
                 <div id="modal-toSlide">
                     <div id="modal-fb">
                         <div class="modal-body">
-                            <button class="button" onclick="checkFacebookLogin();">
+                            <button class="button" onclick="checkFacebookLogin('@ViewBag.userEmail');">
                                 <div class="custom-logo">f</div><div class="custom-button">Sign in with Facebook</div>
                             </button>
                         </div>
@@ -71,7 +71,7 @@
                                     </div>
                                     <div class='text-center'>
                                         <input type='submit' value='Enviar' class='email-button' />
-                                        <input type="hidden" name="Token" value="@ViewBag.Token" />
+                                        <input type="hidden" name="Token" value="@Request.Cookies["Token"].Value" />
                                     </div>
                                 </form>
 
