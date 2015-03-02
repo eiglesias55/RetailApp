@@ -127,10 +127,11 @@
   <ItemGroup>
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
+    <Compile Include="Controllers\FBLoginController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PrizeController.cs" />
     <Compile Include="Controllers\QuestionnaireController.cs" />
-    <Compile Include="Controllers\StatusApiController.cs" />
+    <Compile Include="Controllers\TestApiController.cs" />
     <Compile Include="Database\ADMIN.cs">
       <DependentUpon>RetailAppDB.tt</DependentUpon>
     </Compile>

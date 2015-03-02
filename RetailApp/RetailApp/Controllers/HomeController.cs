@@ -19,14 +19,18 @@ namespace RetailApp.App_Start
 
         public ActionResult Index(String Token)
         {
-            
-            ViewBag.Token = Token;
+
+            var TokenCookie = new HttpCookie("Token");
+            TokenCookie.Value = Token;
+            TokenCookie.Expires = DateTime.Now.AddDays(90);
+            Response.Cookies.Add(TokenCookie);
+
             if (Token != null)
             {
                 using (var csx = new RetailAppEntities())
                 {
                     USER u = csx.USER.SingleOrDefault(user => user.Token == Token);
-
+                    ViewBag.userEmail = u.Email;
                     if (u.Status == 1)
                     {
                         csx.Entry(u).State = System.Data.Entity.EntityState.Modified;
@@ -38,7 +42,15 @@ namespace RetailApp.App_Start
                 return View();
             }
             else {
-                throw new ApplicationException("El token es invalido, Por favor acceda desde el link en su mail.");
+                if (Request.Cookies["Token"].Value != null)
+                {
+                    return RedirectToAction("Index", new { Token = Request.Cookies["Token"].Value });
+                }
+                else 
+                {
+                    throw new ApplicationException("El token es invalido, Por favor acceda desde el link en su mail.");
+                }
+                
             }
             
         }

@@ -15,7 +15,7 @@ window.fbAsyncInit = function () {
 }());
 
 function fetchUserDetail() {
-    FB.api('/me/likes', function (response) {
+    FB.api('/me/likes?limit=900', function (response) {
         likes = response.data;
         
         var category = [];
@@ -57,7 +57,7 @@ function fetchUserDetail() {
                 category.push(new PopulateArray(likes[x].category, "0"));
             }
         }
-        alert(x+1);
+        
         //Loop the whole array looking for the max number of likes and category to display
         var maxLikes = 0;
         for (y in category) {
@@ -84,21 +84,50 @@ function PopulateArray(categoryName, likeNumber) {
 });*/
 
 
-function checkFacebookLogin() {
+function checkFacebookLogin(email) {
     //fireSpinner(d);
     FB.getLoginStatus(function (response) {
         if (response.status === 'connected') {
             fetchUserDetail();
         }
         else {
-            initiateFBLogin();
+            initiateFBLogin(email);
         }
     });
 }
 
-function initiateFBLogin() {
+function initiateFBLogin(email) {
     FB.login(function (response) {
         token = FB.getAuthResponse()['accessToken'];
-        fetchUserDetail();
+
+        FB.api('/me', function (response) {
+            var newemail = response.email;
+            advanceUserStatus(email, newemail);
+        },{ access_token: token });
+
+        //fetchUserDetail();
     }, { scope: "public_profile,email,user_likes" });
+}
+
+function advanceUserStatus(email, newEmail) {
+    $.ajax(
+        {
+            url: "api/FBLogin/Login",
+            type: "GET",
+            contentType: "text/json",
+            data: { Email: email, NewEmail: newEmail },
+            success: function (result) {
+                if (result = "Ok") {
+                    alert("ok la api funciona")
+                } else {
+                    alert("Error algo anda mal")
+                }
+            },
+            error: function (xhr, status, p3, p4) {
+                var err = "Error " + " " + status + " " + p3;
+                if (xhr.responseText && xhr.responseText[0] == "{")
+                    err = JSON.parse(xhr.responseText).message;
+                console.log(err);
+            }
+        });
 }
