@@ -2,7 +2,6 @@
 
 /*var question1 = false, question2 = false, question3 = false, question4 = false, question5 = false; // True : Answered, False: Pending;*/
 
-
 $(document).ready(function () {
 
     var question1 = false, question2 = false, question3 = false, question4 = false, question5 = false; // True : Answered, False: Pending;
@@ -33,8 +32,8 @@ $(document).ready(function () {
                 $("#tab2").attr("data-toggle", "tab");              // Atributo que hace al tab seleccionable.
                 $("#tab2").attr("href", "#question2");              // Id de la pregunta a la que hace referencia.
                 $("#tab1").parent().removeClass("active");          // Remueve la clase al padre del id "tab1".
-                $("#tab2").parent().addClass("active");             //Agrega la clase al padre del id "tab2".
-                $('#question1').attr("class", "tab-pane fade");     //Atributo que vuelve al tab inactivo.
+                $("#tab2").parent().addClass("active");             //Agrega la clase al padre del id "tab2".            
+                $('#question1').attr("class", "tab-pane fade");     //Atributo que vuelve al tab inactivo.               
                 $('#question2').attr("class", "tab-pane fade in active"); //Atributo que vuelve al tab activo.
                 $('#tab2 span.round-tabs').fadeTo(200, 1);          //Atributo que hace visible al tab, cuando la pregunta anterior (requerida) es respondida.
             },500);
