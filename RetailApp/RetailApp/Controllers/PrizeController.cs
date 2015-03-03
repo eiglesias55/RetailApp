@@ -23,7 +23,7 @@ namespace RetailApp.Controllers
                 csx.SaveChanges();
             }
             return View();
-        }
+        }      
     } 
         
 }

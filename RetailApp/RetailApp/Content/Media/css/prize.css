@@ -12,11 +12,14 @@
 
 .modal-header {
     text-align:center;
+    font-size:300%;
 }
 
 .modal-body {
+    font-size:200%;
     text-align:center;
-    padding:  auto;
+    padding-bottom: 0.5em;
     display:block;
 }
+
 

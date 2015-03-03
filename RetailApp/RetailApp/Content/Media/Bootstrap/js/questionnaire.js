@@ -6,7 +6,7 @@ $(document).ready(function () {
 
     var question1 = false, question2 = false, question3 = false, question4 = false, question5 = false; // True : Answered, False: Pending;
 
-    $('.round-tabs').hide(0);
+    $('.round-tabs,#send-button').hide(0);
 
     if ($('#question1').attr('class') === 'tab-pane fade in active') {
         $('#tab1 span.round-tabs').fadeTo(200, 1);
@@ -131,8 +131,8 @@ $(document).ready(function () {
     $("#question5 > div.question-choices > div.choice > input[name='choice']:radio").change(function () {
         if (question5 !== true) {
             question5 = true;
-            $(".tab-content").append("<div class='text-center'><a href='#' class='send-button'>Terminar</a></div>");
-            sendResponse($("#email_hidden").text(), 5, $("#question5 input[name=choice]:checked").val())
+            sendResponse($("#email_hidden").text(), 5, $("#question5 input[name=choice]:checked").val());
+            $("#send-button").show(0);
         }
         });
 });
