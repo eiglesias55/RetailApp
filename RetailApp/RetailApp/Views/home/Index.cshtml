@@ -71,7 +71,7 @@
                                     </div>
                                     <div class='text-center'>
                                         <input type='submit' value='Enviar' class='email-button' />
-                                        <input type="hidden" name="Token" value="@Request.Cookies["Token"].Value" />
+                                        <input type="hidden" name="Token" value="@Response.Cookies["Token"].Value" />
                                     </div>
                                 </form>
 

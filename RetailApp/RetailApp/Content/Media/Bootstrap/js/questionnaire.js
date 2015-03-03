@@ -23,12 +23,40 @@ $(document).ready(function () {
         }
     });
 
+    function sendResponse(email,idPregunta,opcionRespuesta) {
+        $.ajax(
+            {
+                url: "api/Respuestas/GuardarRespuestas",
+                type: "GET",
+                contentType: "text/json",
+                data: { Email: email, IdPregunta: idPregunta, NumeroOpcion: opcionRespuesta},
+                success: function (result) {
+                    if (result = "Ok") {
+                        alert("ok la api funciona")
+                    } else {
+                        alert("Error algo anda mal")
+                    }
+                },
+                error: function (xhr, status, p3, p4) {
+                    var err = "Error " + " " + status + " " + p3;
+                    if (xhr.responseText && xhr.responseText[0] == "{")
+                        err = JSON.parse(xhr.responseText).message;
+                    console.log(err);
+                }
+            });
+    }
+
     /* ----------------------------------------- Question 1 ----------------------------------------------*/
    
     $("#question1 > div.question-choices > div.choice > input[name='choice']:radio").change(function () {
         if (question1 !== true) {
             question1 = true;
-            setTimeout(function () {               
+            setTimeout(function () {
+                $(".board").addClass("loading");
+                $.when(sendResponse($("#email_hidden").text(), 1, $("#question1 input[name=choice]:checked").val()))
+                    .done(function () {
+                        $(".board").removeClass("loading");
+                    });
                 $("#tab2").attr("data-toggle", "tab");              // Atributo que hace al tab seleccionable.
                 $("#tab2").attr("href", "#question2");              // Id de la pregunta a la que hace referencia.
                 $("#tab1").parent().removeClass("active");          // Remueve la clase al padre del id "tab1".
@@ -36,6 +64,7 @@ $(document).ready(function () {
                 $('#question1').attr("class", "tab-pane fade");     //Atributo que vuelve al tab inactivo.               
                 $('#question2').attr("class", "tab-pane fade in active"); //Atributo que vuelve al tab activo.
                 $('#tab2 span.round-tabs').fadeTo(200, 1);          //Atributo que hace visible al tab, cuando la pregunta anterior (requerida) es respondida.
+                sendResponse($("#email_hidden").text(), 1, $("#question1 input[name=choice]:checked").val())
             },500);
         }
     });

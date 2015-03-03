@@ -23,7 +23,7 @@ namespace RetailApp.Database
         public int Id { get; set; }
         public string Descripcion { get; set; }
     
-        public virtual ICollection<RESPUESTA> RESPUESTA { get; set; }
         public virtual PREGUNTA PREGUNTA { get; set; }
+        public virtual ICollection<RESPUESTA> RESPUESTA { get; set; }
     }
 }

@@ -14,6 +14,11 @@ namespace RetailApp.Database
     
     public partial class USER
     {
+        public USER()
+        {
+            this.RESPUESTA = new HashSet<RESPUESTA>();
+        }
+    
         public string Email { get; set; }
         public string Nombre { get; set; }
         public string Apellido { get; set; }
@@ -23,7 +28,7 @@ namespace RetailApp.Database
         public Nullable<System.DateTime> Fecha { get; set; }
         public string EmailSecundario { get; set; }
     
-        public virtual RESPUESTA RESPUESTA { get; set; }
+        public virtual ICollection<RESPUESTA> RESPUESTA { get; set; }
         public virtual STATUS STATUS1 { get; set; }
     }
 }
