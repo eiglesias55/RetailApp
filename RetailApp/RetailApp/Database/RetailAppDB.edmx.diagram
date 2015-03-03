@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="2948132a6bee4d6b87b4df0e0d44e464" Name="Diagram1">
+      <Diagram DiagramId="c4fe9a1d5ba246d5b8fae5d3aa0f02e5" Name="Diagram1">
         <EntityTypeShape EntityType="RetailAppModel.ADMIN" Width="1.5" PointX="5.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="RetailAppModel.OPCION" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="RetailAppModel.PREGUNTA" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
@@ -13,7 +13,7 @@
         <EntityTypeShape EntityType="RetailAppModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="6.75" IsExpanded="true" />
         <EntityTypeShape EntityType="RetailAppModel.USER" Width="1.5" PointX="3" PointY="5.25" IsExpanded="true" />
         <AssociationConnector Association="RetailAppModel.FK_OPCION_PREGUNTA" ManuallyRouted="false" />
-        <AssociationConnector Association="RetailAppModel.FK_RESPUESTA_OPCION" ManuallyRouted="false" />
+        <AssociationConnector Association="RetailAppModel.FK_RESPUESTA_OPCION1" ManuallyRouted="false" />
         <AssociationConnector Association="RetailAppModel.FK_RESPUESTA_PREGUNTA" ManuallyRouted="false" />
         <AssociationConnector Association="RetailAppModel.FK_RESPUESTA_USER" ManuallyRouted="false" />
         <AssociationConnector Association="RetailAppModel.FK_USER_STATUS" ManuallyRouted="false" />

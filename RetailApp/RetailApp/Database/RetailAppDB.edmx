@@ -33,6 +33,7 @@
         <EntityType Name="RESPUESTA">
           <Key>
             <PropertyRef Name="Email" />
+            <PropertyRef Name="Numero" />
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
@@ -81,7 +82,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_RESPUESTA_OPCION">
+        <Association Name="FK_RESPUESTA_OPCION1">
           <End Role="OPCION" Type="Self.OPCION" Multiplicity="1" />
           <End Role="RESPUESTA" Type="Self.RESPUESTA" Multiplicity="*" />
           <ReferentialConstraint>
@@ -90,8 +91,8 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="RESPUESTA">
-              <PropertyRef Name="Id" />
               <PropertyRef Name="Numero" />
+              <PropertyRef Name="Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -143,7 +144,7 @@
             <End Role="PREGUNTA" EntitySet="PREGUNTA" />
             <End Role="OPCION" EntitySet="OPCION" />
           </AssociationSet>
-          <AssociationSet Name="FK_RESPUESTA_OPCION" Association="Self.FK_RESPUESTA_OPCION">
+          <AssociationSet Name="FK_RESPUESTA_OPCION1" Association="Self.FK_RESPUESTA_OPCION1">
             <End Role="OPCION" EntitySet="OPCION" />
             <End Role="RESPUESTA" EntitySet="RESPUESTA" />
           </AssociationSet>
@@ -183,7 +184,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="PREGUNTA" Relationship="Self.FK_OPCION_PREGUNTA" FromRole="OPCION" ToRole="PREGUNTA" />
-          <NavigationProperty Name="RESPUESTA" Relationship="Self.FK_RESPUESTA_OPCION" FromRole="OPCION" ToRole="RESPUESTA" />
+          <NavigationProperty Name="RESPUESTA" Relationship="Self.FK_RESPUESTA_OPCION1" FromRole="OPCION" ToRole="RESPUESTA" />
         </EntityType>
         <EntityType Name="PREGUNTA">
           <Key>
@@ -197,12 +198,13 @@
         <EntityType Name="RESPUESTA">
           <Key>
             <PropertyRef Name="Email" />
+            <PropertyRef Name="Numero" />
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Numero" Type="Int32" Nullable="false" />
           <Property Name="Id" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="OPCION" Relationship="Self.FK_RESPUESTA_OPCION" FromRole="RESPUESTA" ToRole="OPCION" />
+          <NavigationProperty Name="OPCION" Relationship="Self.FK_RESPUESTA_OPCION1" FromRole="RESPUESTA" ToRole="OPCION" />
           <NavigationProperty Name="PREGUNTA" Relationship="Self.FK_RESPUESTA_PREGUNTA" FromRole="RESPUESTA" ToRole="PREGUNTA" />
           <NavigationProperty Name="USER" Relationship="Self.FK_RESPUESTA_USER" FromRole="RESPUESTA" ToRole="USER" />
         </EntityType>
@@ -251,7 +253,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_RESPUESTA_OPCION">
+        <Association Name="FK_RESPUESTA_OPCION1">
           <End Role="OPCION" Type="Self.OPCION" Multiplicity="1" />
           <End Role="RESPUESTA" Type="Self.RESPUESTA" Multiplicity="*" />
           <ReferentialConstraint>
@@ -260,8 +262,8 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="RESPUESTA">
-              <PropertyRef Name="Id" />
               <PropertyRef Name="Numero" />
+              <PropertyRef Name="Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -313,7 +315,7 @@
             <End Role="PREGUNTA" EntitySet="PREGUNTA" />
             <End Role="OPCION" EntitySet="OPCION" />
           </AssociationSet>
-          <AssociationSet Name="FK_RESPUESTA_OPCION" Association="Self.FK_RESPUESTA_OPCION">
+          <AssociationSet Name="FK_RESPUESTA_OPCION1" Association="Self.FK_RESPUESTA_OPCION1">
             <End Role="OPCION" EntitySet="OPCION" />
             <End Role="RESPUESTA" EntitySet="RESPUESTA" />
           </AssociationSet>

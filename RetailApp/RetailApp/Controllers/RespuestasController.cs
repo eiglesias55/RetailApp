@@ -10,13 +10,13 @@ namespace RetailApp.Controllers
     public class RespuestasController : ApiController
     {
         [HttpGet]
-        public string GuardarRespuestas(string Email, int IdPregunta, int NumeroOpcion)
+        public string GuardarRespuestas(string Email, int NumeroOpcion, int IdPregunta)
         {
             try
             {
                 using (var csx = new RetailAppEntities())
                 {
-                    RESPUESTA r = csx.RESPUESTA.SingleOrDefault(rta => rta.Email == Email && rta.Id == IdPregunta);
+                    RESPUESTA r = csx.RESPUESTA.SingleOrDefault(rta => rta.Email == Email && rta.Id == IdPregunta && rta.Numero == NumeroOpcion);
                     if (r != null){
                         csx.Entry(r).State = System.Data.Entity.EntityState.Modified;
                         r.Numero = NumeroOpcion; 
@@ -28,7 +28,7 @@ namespace RetailApp.Controllers
                 }
                 return "Ok";
             }
-            catch(Exception) {
+            catch(Exception ) {
                 return ("Error");
             }
         }
