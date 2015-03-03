@@ -21,11 +21,8 @@ namespace RetailApp.Controllers
                         csx.Entry(r).State = System.Data.Entity.EntityState.Modified;
                         r.Numero = NumeroOpcion; 
                     }else{
-                        RESPUESTA resp = new RESPUESTA();
-                        resp.Email = Email;
-                        resp.Numero = NumeroOpcion;
-                        resp.Id = IdPregunta;
-                        csx.RESPUESTA.Add(resp);
+                        RESPUESTA resp = new RESPUESTA { Email = Email, Numero = NumeroOpcion, Id = IdPregunta };
+                        csx.RESPUESTA.Add(resp);                  
                     }
                     csx.SaveChanges();
                 }

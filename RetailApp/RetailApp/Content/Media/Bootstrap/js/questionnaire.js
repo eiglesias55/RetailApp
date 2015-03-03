@@ -82,6 +82,7 @@ $(document).ready(function () {
                 $('#question2').attr("class", "tab-pane fade");
                 $('#question3').attr("class", "tab-pane fade in active");
                 $('#tab3 span.round-tabs').fadeTo(200, 1);
+                sendResponse($("#email_hidden").text(), 2, $("#question2 input[name=choice]:checked").val())
             }, 500);
         }
     });
@@ -99,6 +100,7 @@ $(document).ready(function () {
                 $('#question3').attr("class", "tab-pane fade");
                 $('#question4').attr("class", "tab-pane fade in active");
                 $('#tab4 span.round-tabs').fadeTo(200, 1);
+                sendResponse($("#email_hidden").text(), 3, $("#question3 input[name=choice]:checked").val())
             },500);
         }
     });
@@ -117,6 +119,7 @@ $(document).ready(function () {
                 $('#question4').attr("class", "tab-pane fade");
                 $('#question5').attr("class", "tab-pane fade in active");
                 $('#tab5 span.round-tabs').fadeTo(200, 1);
+                sendResponse($("#email_hidden").text(), 4, $("#question4 input[name=choice]:checked").val())
             }, 500);
         }
 
@@ -129,6 +132,7 @@ $(document).ready(function () {
         if (question5 !== true) {
             question5 = true;
             $(".tab-content").append("<div class='text-center'><a href='#' class='send-button'>Terminar</a></div>");
+            sendResponse($("#email_hidden").text(), 5, $("#question5 input[name=choice]:checked").val())
         }
         });
 });
