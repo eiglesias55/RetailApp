@@ -7,7 +7,7 @@ using RetailApp.Database;
 using System.Web.UI.WebControls;
 using System.Collections.Specialized;
 using System.Net.Mail;
-using System.Web.UI;
+using System.Text.RegularExpressions;
 
 
 namespace RetailApp.App_Start
@@ -63,17 +63,36 @@ namespace RetailApp.App_Start
                 USER u = csx.USER.SingleOrDefault(user => user.Token == Token);
                 if (u != null)
                 {
-                    csx.Entry(u).State = System.Data.Entity.EntityState.Modified;
-                    var recordEmail = string.Compare(Email, u.Email);
-                    if (recordEmail != 0) {
-                        u.EmailSecundario = Email;
+                    bool validEmail;
+                    try
+                    {
+                        MailAddress m = new MailAddress(Email);
+
+                        validEmail = true;
                     }
-                    u.Status = 4;
-                    u.Fecha = DateTime.Now;
-                    csx.SaveChanges();
+                    catch (FormatException)
+                    {
+                        validEmail = false;
+                    }
+
+                    if (Email != "" && validEmail)
+                    {
+                        csx.Entry(u).State = System.Data.Entity.EntityState.Modified;
+                        var recordEmail = string.Compare(Email, u.Email);
+                        if (recordEmail != 0)
+                        {
+                            u.EmailSecundario = Email;
+                        }
+                        u.Status = 4;
+                        u.Fecha = DateTime.Now;
+                        csx.SaveChanges();
+                    }
+                    else { 
+                        throw new ApplicationException("Email incompleto o invalido.");
+                    }
                 }
                 else {
-                    throw new ApplicationException("El Token es invalido.");
+                    
                 }
             }
             return RedirectToAction("Index","Questionnaire");
