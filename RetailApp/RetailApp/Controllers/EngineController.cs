@@ -9,5 +9,11 @@ namespace RetailApp.Controllers
 {
     public class EngineController : ApiController
     {
+        public String SendData(String email,String likes) {
+
+
+
+            return null;
+        }
     }
 }
