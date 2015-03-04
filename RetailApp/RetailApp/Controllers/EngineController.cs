@@ -11,7 +11,7 @@ namespace RetailApp.Controllers
     {
         public String SendData(String email,String likes) {
 
-
+            var a = 0;
 
             return email;
         }
