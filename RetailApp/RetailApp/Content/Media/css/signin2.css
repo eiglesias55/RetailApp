@@ -21,11 +21,16 @@ body {
 
 
 #loginModal{
-    margin: 5% auto 0 auto; 
-    position: static;
+    margin: 30px auto 0 auto; 
+}
+
+.modal-body {
+    padding-left:10%;
+    padding-right:10%;
 }
 
 .button {    
+     margin:5% auto;
      width:100%;
      display:inline-flex;
      background-color:#022248;
@@ -34,27 +39,26 @@ body {
 }
 
 .custom-button{
-    height:100px;
+    height:100%;
     width:80%;
     color:#FFFFFF;
     font-family:Arial;
     background-color:#022248;
     text-align:center;
     font-size:200%;
-    padding-top:1em;
-    border-left:2px solid #030f1e;
+    margin-top:0.8em;
+    margin-bottom:0.8em;
 }
 
 .custom-logo {
-    height:100px;
+    /*height:100%;*/
     width:20%;
     color:#FFFFFF;
     font-family:'Arial';
-    font-size:70px; 
+    font-size:425%; 
     background-color:#022248; 
     text-align:center;   
-    border-right:2px solid #030f1e;
-    padding-bottom:40px;
+    border-right:4px solid #030f1e;
 }
 
 .button {
@@ -90,7 +94,7 @@ body {
 
 .email-button {
 	background:#022248;
-    border-radius: 3px;
+    border-radius:6px;
 	text-indent:0px;
 	display:inline-block;
 	color:#ddd;
@@ -130,25 +134,27 @@ h1 {
 }
 
 .bodyAdmin {
-    padding-top: 20%;
-    top: 50%;
-    left: 50%;
-    margin-left: 50px;
-    margin-top: 150px;
+    margin-top: 5%;
+    position:static;
 }
 .containerAdmin {
     background-color: black;
+    border-top-left-radius:10px;
+    border-top-right-radius:10px;
     opacity: 0.8;
     filter: alpha(opacity=80);
     align-content:center;
 }
+
 thead {
-color:white;
-font-weight:bold;
+    color:white;
+    font-weight:bold;
 }
+
 tbody {
-color:white;
+    color:white;
 }
+
 #buttonsAdmin {
     padding-top: 32px;
     color: white;

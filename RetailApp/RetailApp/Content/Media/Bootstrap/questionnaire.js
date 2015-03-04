@@ -1,4 +1,8 @@
-﻿$(document).ready(function () {
+﻿const totalQuestions = 5;
+
+/*var question1 = false, question2 = false, question3 = false, question4 = false, question5 = false; // True : Answered, False: Pending;*/
+
+$(document).ready(function () {
 
     var question1 = false, question2 = false, question3 = false, question4 = false, question5 = false; // True : Answered, False: Pending;
 
@@ -17,7 +21,7 @@
         if ($(this).parent().parent().attr('class') !== 'active') {
             $(this).animate({ width: "100%", height: "100%" }, 0, "swing");
         }
-    });  
+    });
 
     function sendResponse(email,idPregunta,opcionRespuesta) {
         $.ajax(
@@ -42,6 +46,53 @@
             });
     }
 
+    function changeQuestionStatus(number,status){
+        switch (number) {
+            case 1:
+                question1 = status;
+                break;
+            case 2:
+                question2 = status;
+                break;
+            case 3:
+                question3= status;
+                break;
+            case 4:
+                question4 = status;
+                break;             
+            case 5:
+                question5 = status;
+                break;
+        }
+    }
+
+    /* ---------------------------------------------- Test ------------------------------------------------*/
+    function initializeTabs() {
+        for (var i = 1 ; i <= numberOfQuestions;) {
+            var questionId = "#question" + i;
+            var container = questionId + " > div.question-choices > div.choice > input[name='choice']:radio";
+            $(container).change(function () {
+                if (questionAnswered !== true) {
+                    question = true;
+                    setTimeout(function () {
+                        $(".board").addClass("loading");
+                        $.when(sendResponse($("#email_hidden").text(), 1, $("#question1 input[name=choice]:checked").val()))
+                            .done(function () {
+                                $(".board").removeClass("loading");
+                            });
+                        $("#tab2").attr("data-toggle", "tab");              // Atributo que hace al tab seleccionable.
+                        $("#tab2").attr("href", "#question2");              // Id de la pregunta a la que hace referencia.
+                        $("#tab1").parent().removeClass("active");          // Remueve la clase al padre del id "tab1".
+                        $("#tab2").parent().addClass("active");             //Agrega la clase al padre del id "tab2".            
+                        $('#question1').attr("class", "tab-pane fade");     //Atributo que vuelve al tab inactivo.               
+                        $('#question2').attr("class", "tab-pane fade in active"); //Atributo que vuelve al tab activo.
+                        $('#tab2 span.round-tabs').fadeTo(200, 1);          //Atributo que hace visible al tab, cuando la pregunta anterior (requerida) es respondida.
+                        sendResponse($("#email_hidden").text(), 1, $("#question1 input[name=choice]:checked").val())
+                    }, 500);
+                }
+        });
+    }
+    }
     /* ----------------------------------------- Question 1 ----------------------------------------------*/
    
     $("#question1 > div.question-choices > div.choice > input[name='choice']:radio").change(function () {
@@ -132,3 +183,5 @@
         }
         });
 });
+
+ 
