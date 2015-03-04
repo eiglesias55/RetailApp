@@ -13,7 +13,7 @@ namespace RetailApp.Controllers
 
 
 
-            return null;
+            return email;
         }
     }
 }
