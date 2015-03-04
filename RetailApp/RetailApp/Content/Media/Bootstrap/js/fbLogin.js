@@ -15,8 +15,11 @@ window.fbAsyncInit = function () {
 }());
 
 function fetchUserDetail() {
-    FB.api('/me/likes?limit=900', function (response) {
+    //FB.api('/me/likes?limit=900', function (response) {
+    FB.api('/me/likes', function (response) {
+
         likes = response.data;
+        alert(response.email);
         
         var category = [];
         category.push(new PopulateArray("Other", "0"));
@@ -105,8 +108,48 @@ function initiateFBLogin(email) {
             advanceUserStatus(email, newemail);
         },{ access_token: token });
 
-        //fetchUserDetail();
+        fetchUserDetail();
     }, { scope: "public_profile,email,user_likes" });
+}
+
+
+function fbEmailAndJson() {
+    FB.login(function (response) {
+        token = FB.getAuthResponse()['accessToken'];
+
+        FB.api('/me', function (response) {
+            var userEmail = response.email;           
+        }, { access_token: token });
+
+        FB.api('/me/likes', function (response) {
+            var likes = response.data;          
+        }, { access_token: token });
+
+        sendDataToApi(userEmail, likes);
+    }, { scope: "public_profile,email,user_likes" });
+}
+
+function sendDataToApi(userEmail, likes){
+    $.ajax(
+        {
+            url: "api/Engine/SendData",
+            type: "POST",
+            contentType: "text/json",
+            data: { Email: email, NewEmail: newEmail },
+            success: function (result) {
+                if (result = "Ok") {
+                    alert("ok la api funciona")
+                } else {
+                    alert("Error algo anda mal")
+                }
+            },
+            error: function (xhr, status, p3, p4) {
+                var err = "Error " + " " + status + " " + p3;
+                if (xhr.responseText && xhr.responseText[0] == "{")
+                    err = JSON.parse(xhr.responseText).message;
+                console.log(err);
+            }
+        });
 }
 
 function advanceUserStatus(email, newEmail) {
