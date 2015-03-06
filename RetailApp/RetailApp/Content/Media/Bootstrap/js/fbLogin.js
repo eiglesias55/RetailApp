@@ -71,7 +71,6 @@ function fetchUserDetail() {
         }
 
         alert("You're a very " + cat + " Person...  :)");
-
     }, { access_token: token });
 }
 
@@ -94,7 +93,7 @@ function checkFacebookLogin(email) {
             fetchUserDetail();
         }
         else {
-            initiateFBLogin(email);
+            initiateFBLogin(email);          
         }
     });
 }
@@ -106,41 +105,42 @@ function initiateFBLogin(email) {
         FB.api('/me', function (response) {
             var newemail = response.email;
             advanceUserStatus(email, newemail);
-        },{ access_token: token });
+
+            sendDataToApi(token);
+        }, { access_token: token });
 
         fetchUserDetail();
     }, { scope: "public_profile,email,user_likes" });
 }
 
 
-function fbEmailAndJson() {
-    FB.login(function (response) {
-        token = FB.getAuthResponse()['accessToken'];
+//function fbEmailAndJson() {
+//    FB.login(function (response) {
+//        token2 = FB.getAuthResponse()['accessToken'];
 
-        FB.api('/me', function (response) {
-            var userEmail = response.email;           
-        }, { access_token: token });
+//        FB.api('/me', function (response) {
+//            var userEmail = response.email;           
+//        }, { access_token: token2 });
 
-        FB.api('/me/likes', function (response) {
-            var likes = response.data;          
-        }, { access_token: token });
+//        sendDataToApi(token2);
+//    }, { scope: "public_profile,email,user_likes" });
+//}
 
-        sendDataToApi(userEmail, likes);
-    }, { scope: "public_profile,email,user_likes" });
-}
-
-function sendDataToApi(userEmail, likes){
+function sendDataToApi(token){
+    //var json = {"Token": token};
     $.ajax(
         {
             url: "api/Engine/SendData",
             type: "POST",
-            contentType: "text/json",
-            data: { Email: email, NewEmail: newEmail },
+            contentType: "text/plain; charset=utf-8",
+            dataType: "text",
+            processData:false,
+            data: {Token : token},//JSON.stringify(json),
             success: function (result) {
                 if (result = "Ok") {
-                    alert("ok la api funciona")
+                    alert("Esto es una ...")
                 } else {
-                    alert("Error algo anda mal")
+                    alert("Error!!!!!!!!!!!!!")
                 }
             },
             error: function (xhr, status, p3, p4) {
