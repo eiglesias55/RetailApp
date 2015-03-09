@@ -39,14 +39,14 @@
         <div class="col-sm-6">
             <h1>Estatus de usuarios</h1>
         </div>
-        <div class="col-sm-6" id="buttonsAdmin">
+        <div class="col-sm-3" id="buttonsAdmin">
             <div class="btn-group" role="group" aria-label="...">
                 <button type="button" class="btn btn-default"><a href="@Url.Action("sendEmail","Admin")">Enviar Email</a></button>
                 <button type="button" class="btn btn-default"><a href="@Url.Action("reSendEmail", "Admin")">Enviar Reminder</a></button>
 
             </div>
         </div>
-        <div class="col-sm-6">
+        <div class="col-sm-3" id="buttonsAdmin">
             <div class="dropdown">
                 Filtrar por estado: 
                 <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
@@ -68,7 +68,6 @@
                     <td>Email</td>
                     <td>Nombre</td>
                     <td>Apellido</td>
-                    <td>Token</td>
                     <td>VIP</td>
                     <td>Status</td>
 

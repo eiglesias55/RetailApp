@@ -85,7 +85,8 @@ namespace RetailApp.App_Start
             //Send email to all users -- on request...
             using (var csx = new RetailAppEntities())
             {
-                List<USER> l = csx.USER.Where(m => m.Status == 0).ToList();
+                var dateTime = DateTime.Now.AddDays(-7);
+                List<USER> l = csx.USER.Where(m => m.Status == 0 && m.Fecha > dateTime).ToList();
                 foreach (USER user in l)
                 {
                     csx.Entry(user).State = System.Data.Entity.EntityState.Modified;
@@ -93,8 +94,8 @@ namespace RetailApp.App_Start
                     var msg = new MailMessage();
                     msg.To.Add(user.Email);
                     msg.IsBodyHtml = false;
-                    msg.Subject = "Test email";
-                    msg.Body = "Hola " + user.Apellido + ", " + user.Nombre + " te ganaste un premio.. " + "Click on the following link:  http://localhost:49877/?Token=" + user.Token;
+                    msg.Subject = "Re send email after 7 days, test";
+                    msg.Body = "Hola " + user.Nombre + ", " + user.Apellido + " No olvides ingresar a la aplicacion desde el siguiente link " + "Click on the following link:  http://localhost:49877/?Token=" + user.Token;
                     SmtpClient smtpClient = new SmtpClient();
                     smtpClient.Send(msg);
                     csx.SaveChanges();
@@ -120,7 +121,7 @@ namespace RetailApp.App_Start
                     msg.To.Add(user.Email);
                     msg.IsBodyHtml = false;
                     msg.Subject ="Test email";
-                    msg.Body = "Hola " + user.Nombre + " " + user.Apellido + " te ganaste un premio.. " + "Click on the following link:  http://localhost:49877/?Token=" + user.Token;
+                    msg.Body = "Hola " + user.Nombre + " " + user.Apellido + " Ingresa a la aplicacion a traves del siguiente link y gana un premio" + "Click on the following link:  http://localhost:49877/?Token=" + user.Token;
                     SmtpClient smtpClient = new SmtpClient();
                     smtpClient.Send(msg);
                     csx.SaveChanges();
