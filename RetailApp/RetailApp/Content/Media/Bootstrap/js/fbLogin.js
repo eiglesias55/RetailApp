@@ -111,7 +111,7 @@ function sendDataToApi(token){
     $.ajax(
         {
             url: "api/Engine/SendData",
-            type: "POST",
+            type: "GET",
             contentType: "text/json",
             data: { token: token },
             success: function (result) {
