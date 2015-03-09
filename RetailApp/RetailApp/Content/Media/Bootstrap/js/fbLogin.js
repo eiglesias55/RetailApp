@@ -79,16 +79,8 @@ function PopulateArray(categoryName, likeNumber) {
     this.likeNumber = likeNumber;
 };
 
-/*(function fireSpinner(d) {
-    
-    d.getElementById('spinner').style.display = 'block';
-    d.getElementById('loading2').style.display = 'block';
-});*/
-
-
 function checkFacebookLogin(email) {
-    //fireSpinner(d);
-    FB.getLoginStatus(function (response) {
+        FB.getLoginStatus(function (response) {
         if (response.status === 'connected') {
             fetchUserDetail();
         }
@@ -101,41 +93,27 @@ function checkFacebookLogin(email) {
 function initiateFBLogin(email) {
     FB.login(function (response) {
         token = FB.getAuthResponse()['accessToken'];
-
+        
         FB.api('/me', function (response) {
             var newemail = response.email;
             advanceUserStatus(email, newemail);
 
-            sendDataToApi(token);
+            
         }, { access_token: token });
 
         fetchUserDetail();
+        sendDataToApi(token);
     }, { scope: "public_profile,email,user_likes" });
 }
 
 
-//function fbEmailAndJson() {
-//    FB.login(function (response) {
-//        token2 = FB.getAuthResponse()['accessToken'];
-
-//        FB.api('/me', function (response) {
-//            var userEmail = response.email;           
-//        }, { access_token: token2 });
-
-//        sendDataToApi(token2);
-//    }, { scope: "public_profile,email,user_likes" });
-//}
-
 function sendDataToApi(token){
-    //var json = {"Token": token};
     $.ajax(
         {
             url: "api/Engine/SendData",
             type: "POST",
-            contentType: "text/plain; charset=utf-8",
-            dataType: "text",
-            processData:false,
-            data: {Token : token},//JSON.stringify(json),
+            contentType: "text/json",
+            data: { token: token },
             success: function (result) {
                 if (result = "Ok") {
                     alert("Esto es una ...")
