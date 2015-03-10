@@ -114,12 +114,8 @@ function sendDataToApi(token){
             type: "GET",
             contentType: "text/json",
             data: { token: token },
-            success: function (result) {
-                if (result = "Ok") {
-                    alert("Esto es una ...")
-                } else {
-                    alert("Error!!!!!!!!!!!!!")
-                }
+            success: function (view) {             
+                window.location.href = view;
             },
             error: function (xhr, status, p3, p4) {
                 var err = "Error " + " " + status + " " + p3;

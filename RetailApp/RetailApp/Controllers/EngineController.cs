@@ -46,8 +46,13 @@ namespace RetailApp.Controllers
                     }
                     catch (Exception) { 
                     }
-                }                 
-            return "Ok";
+                }
+            String url = "Prize";
+            if (categoriesDictionary.Count == 0)
+            {
+                url = "Questionnaire";
+            }
+            return url;
         }
     }
 }

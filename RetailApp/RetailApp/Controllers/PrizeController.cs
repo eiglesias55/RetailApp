@@ -14,6 +14,10 @@ namespace RetailApp.Controllers
 
         public ActionResult Index(String Token)
         {
+            if (Token == null)
+            {
+                Token = Request.Cookies["Token"].Value; 
+            }
             using (var csx = new RetailAppEntities())
             {
                 USER u = csx.USER.SingleOrDefault(user => user.Token == Token);
