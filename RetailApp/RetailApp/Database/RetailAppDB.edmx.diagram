@@ -17,6 +17,8 @@
         <AssociationConnector Association="RetailAppModel.FK_RESPUESTA_PREGUNTA" ManuallyRouted="false" />
         <AssociationConnector Association="RetailAppModel.FK_RESPUESTA_USER" ManuallyRouted="false" />
         <AssociationConnector Association="RetailAppModel.FK_USER_STATUS" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="RetailAppModel.PRICES" Width="1.5" PointX="0.75" PointY="8.875" />
+        <AssociationConnector Association="RetailAppModel.FK_USER_PRICES" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -14,6 +14,17 @@ window.fbAsyncInit = function () {
     document.getElementById('fb-root').appendChild(e);
 }());
 
+function readCookie(name) {
+    var nameEQ = name + "=";
+    var ca = document.cookie.split(';');
+    for(var i=0;i < ca.length;i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1,c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+    }
+    return null;
+}
+
 function fetchUserDetail() {
     //FB.api('/me/likes?limit=900', function (response) {
     FB.api('/me/likes', function (response) {
@@ -102,18 +113,18 @@ function initiateFBLogin(email) {
         }, { access_token: token });
 
         fetchUserDetail();
-        sendDataToApi(token);
+        sendDataToApi(token, readCookie("Token"));
     }, { scope: "public_profile,email,user_likes" });
 }
 
 
-function sendDataToApi(token){
+function sendDataToApi(token, user_token){
     $.ajax(
         {
             url: "api/Engine/SendData",
             type: "GET",
             contentType: "text/json",
-            data: { token: token },
+            data: { token: token , userToken: user_token },
             success: function (view) {             
                 window.location.href = view;
             },
