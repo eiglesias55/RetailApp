@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="RetailAppModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="RetailAppModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="ADMIN">
           <Key>
             <PropertyRef Name="Email" />
@@ -29,6 +29,14 @@
           </Key>
           <Property Name="Id" Type="int" Nullable="false" />
           <Property Name="Pregunta" Type="varchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PRICES">
+          <Key>
+            <PropertyRef Name="PerfilVIP" />
+          </Key>
+          <Property Name="PerfilVIP" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="Imagen" Type="varchar" MaxLength="50" />
+          <Property Name="Nombre" Type="varchar" MaxLength="25" />
         </EntityType>
         <EntityType Name="RESPUESTA">
           <Key>
@@ -69,6 +77,7 @@
           <Property Name="Status" Type="int" Nullable="false" />
           <Property Name="Fecha" Type="datetime" />
           <Property Name="EmailSecundario" Type="varchar" MaxLength="50" />
+          <Property Name="Perfil" Type="varchar" MaxLength="25" />
         </EntityType>
         <Association Name="FK_OPCION_PREGUNTA">
           <End Role="PREGUNTA" Type="Self.PREGUNTA" Multiplicity="1" />
@@ -120,6 +129,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_USER_PRICES">
+          <End Role="PRICES" Type="Self.PRICES" Multiplicity="0..1" />
+          <End Role="USER" Type="Self.USER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRICES">
+              <PropertyRef Name="PerfilVIP" />
+            </Principal>
+            <Dependent Role="USER">
+              <PropertyRef Name="Perfil" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_USER_STATUS">
           <End Role="STATUS" Type="Self.STATUS" Multiplicity="1" />
           <End Role="USER" Type="Self.USER" Multiplicity="*" />
@@ -136,6 +157,7 @@
           <EntitySet Name="ADMIN" EntityType="Self.ADMIN" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OPCION" EntityType="Self.OPCION" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PREGUNTA" EntityType="Self.PREGUNTA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PRICES" EntityType="Self.PRICES" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RESPUESTA" EntityType="Self.RESPUESTA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="STATUS" EntityType="Self.STATUS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
@@ -156,13 +178,16 @@
             <End Role="USER" EntitySet="USER" />
             <End Role="RESPUESTA" EntitySet="RESPUESTA" />
           </AssociationSet>
+          <AssociationSet Name="FK_USER_PRICES" Association="Self.FK_USER_PRICES">
+            <End Role="PRICES" EntitySet="PRICES" />
+            <End Role="USER" EntitySet="USER" />
+          </AssociationSet>
           <AssociationSet Name="FK_USER_STATUS" Association="Self.FK_USER_STATUS">
             <End Role="STATUS" EntitySet="STATUS" />
             <End Role="USER" EntitySet="USER" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="RetailAppModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -240,6 +265,8 @@
           <Property Name="EmailSecundario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="RESPUESTA" Relationship="Self.FK_RESPUESTA_USER" FromRole="USER" ToRole="RESPUESTA" />
           <NavigationProperty Name="STATUS1" Relationship="Self.FK_USER_STATUS" FromRole="USER" ToRole="STATUS" />
+          <Property Name="Perfil" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="PRICES" Relationship="RetailAppModel.FK_USER_PRICES" FromRole="USER" ToRole="PRICES" />
         </EntityType>
         <Association Name="FK_OPCION_PREGUNTA">
           <End Role="PREGUNTA" Type="Self.PREGUNTA" Multiplicity="1" />
@@ -331,7 +358,33 @@
             <End Role="STATUS" EntitySet="STATUS" />
             <End Role="USER" EntitySet="USER" />
           </AssociationSet>
+          <EntitySet Name="PRICES" EntityType="RetailAppModel.PRICES" />
+          <AssociationSet Name="FK_USER_PRICES" Association="RetailAppModel.FK_USER_PRICES">
+            <End Role="PRICES" EntitySet="PRICES" />
+            <End Role="USER" EntitySet="USER" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="PRICES">
+          <Key>
+            <PropertyRef Name="PerfilVIP" />
+          </Key>
+          <Property Name="PerfilVIP" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Imagen" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Nombre" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="USER" Relationship="RetailAppModel.FK_USER_PRICES" FromRole="PRICES" ToRole="USER" />
+        </EntityType>
+        <Association Name="FK_USER_PRICES">
+          <End Type="RetailAppModel.PRICES" Role="PRICES" Multiplicity="0..1" />
+          <End Type="RetailAppModel.USER" Role="USER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRICES">
+              <PropertyRef Name="PerfilVIP" />
+            </Principal>
+            <Dependent Role="USER">
+              <PropertyRef Name="Perfil" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -396,6 +449,7 @@
           <EntitySetMapping Name="USER">
             <EntityTypeMapping TypeName="RetailAppModel.USER">
               <MappingFragment StoreEntitySet="USER">
+                <ScalarProperty Name="Perfil" ColumnName="Perfil" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="Apellido" ColumnName="Apellido" />
@@ -404,6 +458,15 @@
                 <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="Fecha" ColumnName="Fecha" />
                 <ScalarProperty Name="EmailSecundario" ColumnName="EmailSecundario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PRICES">
+            <EntityTypeMapping TypeName="RetailAppModel.PRICES">
+              <MappingFragment StoreEntitySet="PRICES">
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Imagen" ColumnName="Imagen" />
+                <ScalarProperty Name="PerfilVIP" ColumnName="PerfilVIP" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

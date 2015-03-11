@@ -32,5 +32,6 @@ namespace RetailApp.Database
         public virtual DbSet<STATUS> STATUS { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<USER> USER { get; set; }
+        public virtual DbSet<PRICES> PRICES { get; set; }
     }
 }

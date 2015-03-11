@@ -27,8 +27,10 @@ namespace RetailApp.Database
         public int Status { get; set; }
         public Nullable<System.DateTime> Fecha { get; set; }
         public string EmailSecundario { get; set; }
+        public string Perfil { get; set; }
     
         public virtual ICollection<RESPUESTA> RESPUESTA { get; set; }
         public virtual STATUS STATUS1 { get; set; }
+        public virtual PRICES PRICES { get; set; }
     }
 }

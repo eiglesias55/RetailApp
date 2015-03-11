@@ -145,6 +145,9 @@
     <Compile Include="Database\PREGUNTA.cs">
       <DependentUpon>RetailAppDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Database\PRICES.cs">
+      <DependentUpon>RetailAppDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Database\RESPUESTA.cs">
       <DependentUpon>RetailAppDB.tt</DependentUpon>
     </Compile>
