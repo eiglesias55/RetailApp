@@ -26,8 +26,13 @@ namespace RetailApp.Controllers
 
             Dictionary<String, int> fbCategoriesList = new Dictionary<String, int>();
             fbCategoriesList.Add("Food & Restaurant",0);
-            fbCategoriesList.Add("Residence & Other",0);
-            fbCategoriesList.Add("Arts & Entertainment",0);
+            fbCategoriesList.Add("Health",0);
+            fbCategoriesList.Add("Education", 0);
+            fbCategoriesList.Add("Arts",0);
+            fbCategoriesList.Add("Technology", 0);
+            fbCategoriesList.Add("Music Entertainment", 0);
+            fbCategoriesList.Add("TV & Movies Entertainment", 0);
+            fbCategoriesList.Add("Books & Magazines Entertainment", 0);
             fbCategoriesList.Add("Community & Government",0);
             fbCategoriesList.Add("Professional Services",0);
             fbCategoriesList.Add("Shopping & Retail",0);
@@ -50,14 +55,40 @@ namespace RetailApp.Controllers
                    categoryLikesList.TryGetValue("Food & Restaurant", out quantity);
                    categoryLikesList["Food & Restaurant"] = categoryLikesList["Food & Restaurant"] + 1;
 
-                }else if(userLike.category =="Health/beauty"|| userLike.category =="Health/medical/pharmaceuticals"|| userLike.category =="Health/medical/pharmaceuticals"|| userLike.category =="Health/medical/pharmacy"|| userLike.category =="Health/wellness website"|| userLike.category =="Hospital/clinic"|| userLike.category =="Education"|| userLike.category =="Education website"|| userLike.category =="University"|| userLike.category =="Doctor"|| userLike.category =="Spas/beauty/personal care"|| userLike.category =="Industrials"|| userLike.category =="Insurance company"|| userLike.category =="School")
+                }else if(userLike.category =="Health/beauty"|| userLike.category =="Health/medical/pharmaceuticals"|| userLike.category =="Health/medical/pharmaceuticals"|| userLike.category =="Health/medical/pharmacy"|| userLike.category =="Health/wellness website"|| userLike.category =="Hospital/clinic"|| userLike.category =="Doctor"|| userLike.category =="Spas/beauty/personal care")
                 {
-                    categoryLikesList.TryGetValue("Residence & Other", out quantity);
-                   categoryLikesList["Residence & Other"] = categoryLikesList["Residence & Other"] + 1;
-                }else if(userLike.category =="Artist"|| userLike.category =="Arts/entertainment/nightlife"|| userLike.category =="Arts/entertainment/nightlife"|| userLike.category =="Arts/humanities website"|| userLike.category =="Computers"|| userLike.category =="Computers/internet website"|| userLike.category =="Computers/technology"|| userLike.category =="Movie"|| userLike.category =="Movie general"|| userLike.category =="Movie genre"|| userLike.category =="Movie theater"|| userLike.category =="Movies/music "|| userLike.category =="Museum/art gallery"|| userLike.category =="Music"|| userLike.category =="Music award"|| userLike.category =="Music chart"|| userLike.category =="Music video"|| userLike.category =="Musical genre"|| userLike.category =="Musical instrument"|| userLike.category =="Musician/band"|| userLike.category =="Games/toys"|| userLike.category =="Electronics"|| userLike.category =="Book"|| userLike.category =="Book genre"|| userLike.category =="Magazine"|| userLike.category =="Media/news/publishing"|| userLike.category =="Entertainer"|| userLike.category =="Entertainment website"|| userLike.category =="Tv"|| userLike.category =="Tv channel"|| userLike.category =="Tv genre"|| userLike.category =="Tv network"|| userLike.category =="Tv show"|| userLike.category =="Tv/movie award"|| userLike.category =="Comedian"|| userLike.category =="Interest"|| userLike.category =="Internet/software"|| userLike.category =="News/media website"|| userLike.category =="Episode"|| userLike.category =="Website"|| userLike.category =="Playlist")
+                    categoryLikesList.TryGetValue("Health", out quantity);
+                   categoryLikesList["Health"] = categoryLikesList["Health"] + 1;
+                }
+                else if (userLike.category == "Education" || userLike.category == "Education website" || userLike.category == "University" || userLike.category == "School")
                 {
-                    categoryLikesList.TryGetValue("Arts & Entertainment", out quantity);
-                   categoryLikesList["Arts & Entertainment"] = categoryLikesList["Arts & Entertainment"] + 1;
+                    categoryLikesList.TryGetValue("Education", out quantity);
+                    categoryLikesList["Education"] = categoryLikesList["Education"] + 1;
+                }
+                else if (userLike.category == "Computers" || userLike.category == "Computers/internet website" || userLike.category == "Computers/technology" || userLike.category == "Games/toys" || userLike.category == "Electronics" || userLike.category == "Internet/software" || userLike.category == "News/media website" || userLike.category == "Website")
+                {
+                    categoryLikesList.TryGetValue("Technology", out quantity);
+                    categoryLikesList["Technology"] = categoryLikesList["Technology"] + 1;
+                }
+                else if (userLike.category == "Artist" || userLike.category == "Museum/art gallery" || userLike.category == "Arts/entertainment/nightlife" || userLike.category == "Arts/entertainment/nightlife" || userLike.category == "Arts/humanities website")
+                {
+                    categoryLikesList.TryGetValue("Arts", out quantity);
+                    categoryLikesList["Arts"] = categoryLikesList["Arts"] + 1;
+                }
+                else if (userLike.category == "Music" || userLike.category == "Music award" || userLike.category == "Music chart" || userLike.category == "Music video" || userLike.category == "Musical genre" || userLike.category == "Musical instrument" || userLike.category == "Musician/band" || userLike.category == "Playlist")
+                {
+                    categoryLikesList.TryGetValue("Music Entertainment", out quantity);
+                    categoryLikesList["Music Entertainment"] = categoryLikesList["Music Entertainment"] + 1;
+                }
+                else if (userLike.category == "Movie" || userLike.category == "Movie general" || userLike.category == "Movie genre" || userLike.category == "Movie theater" || userLike.category == "Movies/music " || userLike.category == "Tv" || userLike.category == "Tv channel" || userLike.category == "Tv genre" || userLike.category == "Tv network" || userLike.category == "Tv show" || userLike.category == "Tv/movie award" || userLike.category == "Episode")
+                {
+                    categoryLikesList.TryGetValue("TV & Movies Entertainment", out quantity);
+                    categoryLikesList["TV & Movies Entertainment"] = categoryLikesList["TV & Movies Entertainment"] + 1;
+                }
+                else if (userLike.category == "Book" || userLike.category == "Book genre" || userLike.category == "Magazine" || userLike.category == "Media/news/publishing")
+                {
+                    categoryLikesList.TryGetValue("Books & Magazines Entertainment", out quantity);
+                    categoryLikesList["Books & Magazines Entertainment"] = categoryLikesList["Books & Magazines Entertainment"] + 1;
                 }
                 else if(userLike.category =="Community"|| userLike.category =="Community organization"|| userLike.category =="Community organization"|| userLike.category =="Community/government"|| userLike.category =="Company"|| userLike.category =="Government official"|| userLike.category =="Government organization"|| userLike.category =="Government website"|| userLike.category =="Political ideology"|| userLike.category =="Political organization"|| userLike.category =="Political party"|| userLike.category =="Politician"|| userLike.category =="Organization")
                 {
