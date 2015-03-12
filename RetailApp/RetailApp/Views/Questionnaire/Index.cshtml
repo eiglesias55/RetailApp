@@ -61,34 +61,35 @@
         }
     </style>
     <div id="email_hidden" style="display:none" >@ViewBag.email</div>
-    <section style="background: url(../Img/Discover.png) no-repeat fixed center;">
+    <section style="background: url(../Img/Discover.png) no-repeat fixed center; height:100% ">
         <div class="container">
             <div class="row">
                 <div class="board">
                     <div id="spinner"></div>
-    <!--<div class="board-header">
-        <h3 style="text-align:center;">Retail Event Questionnaire</h3>
-    </div>     -->
-    <div class="tab-content">
-        @{
-            var claseDefault = "tab-pane fade";  
-        }
-        @foreach (PREGUNTA preg in (List<PREGUNTA>)ViewBag.quest)
-        {
-            if (preg.Id == 1)
-            {
-                claseDefault = "tab-pane fade in active";
-            }
-            else {
-                claseDefault = "tab-pane fade";
-            }
-               <div class="@claseDefault" id="@("question"+preg.Id)">
-                   
-                        <div class="question-header">
-                            <h1>@preg.Pregunta1</h1>
-                        </div>
-                        <div class="question-choices">
-                            @foreach (OPCION opc in (List<OPCION>)ViewBag.opcs)
+                    <!--<div class="board-header">
+                        <h3 style="text-align:center;">Retail Event Questionnaire</h3>
+                    </div>     -->
+                    <div class="tab-content">
+                        @{
+                            var claseDefault = "tab-pane fade";
+                        }
+                        @foreach (PREGUNTA preg in (List<PREGUNTA>)ViewBag.quest)
+                        {
+                            if (preg.Id == 1)
+                            {
+                                claseDefault = "tab-pane fade in active";
+                            }
+                            else
+                            {
+                                claseDefault = "tab-pane fade";
+                            }
+                            <div class="@claseDefault" id="@("question"+preg.Id)">
+
+                                <div class="question-header">
+                                    <h1>@preg.Pregunta1</h1>
+                                </div>
+                                <div class="question-choices">
+                                    @foreach (OPCION opc in (List<OPCION>)ViewBag.opcs)
                                     {
                                         if (opc.Id == preg.Id)
                                         {
@@ -98,62 +99,62 @@
                                             </div>
                                         }
                                     }
+                                </div>
+                            </div>
+                        }
+                        <div id="send-button" class='text-center'>
+                            <form action="@Url.Action("Index","Prize")" method="post">
+                                <input type="submit" value="Enviar" class="send-button" />
+                                <input type="hidden" name="Token" value="@Request.Cookies["Token"].Value" />
+                            </form>
                         </div>
-                </div>
-           }
-            <div id="send-button" class='text-center'>
-                <form action="@Url.Action("Index","Prize")" method="post">
-                    <input type="submit" value="Enviar" class="send-button" />
-                    <input type="hidden" name="Token" value="@Request.Cookies["Token"].Value"/>
-                </form>
-            </div>
-                    <div class="clearfix"></div>
-                </div>
+                        <div class="clearfix"></div>
+                    </div>
 
-                <div class="board-inner">
-                    <ul class="nav nav-tabs" id="myTab">
-                        <div class="liner"></div>
-                        <li class="active">
-                            <a id="tab1" data-toggle="tab" title="Category 1" href="#question1">
-                                <span id="roundtab1" class="round-tabs">
-                                    1
-                                </span>
-                            </a>
-                        </li>
+                    <div class="board-inner">
+                        <ul class="nav nav-tabs" id="myTab">
+                            <div class="liner"></div>
+                            <li class="active">
+                                <a id="tab1" data-toggle="tab" title="Category 1" href="#question1">
+                                    <span id="roundtab1" class="round-tabs">
+                                        1
+                                    </span>
+                                </a>
+                            </li>
 
-                        <li>
-                            <a id="tab2" title="Category 2">
-                                <span id="roundtab2" class="round-tabs">
-                                    2
-                                </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a id="tab3" title="Category 3">
-                                <span id="roundtab3" class="round-tabs">
-                                    3
-                                </span>
-                            </a>
-                        </li>
+                            <li>
+                                <a id="tab2" title="Category 2">
+                                    <span id="roundtab2" class="round-tabs">
+                                        2
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a id="tab3" title="Category 3">
+                                    <span id="roundtab3" class="round-tabs">
+                                        3
+                                    </span>
+                                </a>
+                            </li>
 
-                        <li>
-                            <a id="tab4" title="Category 4">
-                                <span id="roundtab4" class="round-tabs">
-                                    4
-                                </span>
-                            </a>
-                        </li>
+                            <li>
+                                <a id="tab4" title="Category 4">
+                                    <span id="roundtab4" class="round-tabs">
+                                        4
+                                    </span>
+                                </a>
+                            </li>
 
-                        <li>
-                            <a id="tab5" title="Category 5">
-                                <span id="roundtab5" class="round-tabs">
-                                    5
-                                </span>
-                            </a>
-                        </li>
+                            <li>
+                                <a id="tab5" title="Category 5">
+                                    <span id="roundtab5" class="round-tabs">
+                                        5
+                                    </span>
+                                </a>
+                            </li>
 
-                    </ul>
-                </div>
+                        </ul>
+                    </div>
 
                 </div>
             </div>
