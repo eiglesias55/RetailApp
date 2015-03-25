@@ -54,7 +54,7 @@
                     <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#"></a></li>
                     @foreach (STATUS s in (List<STATUS>)ViewBag.status)
                     {
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="@Url.Action("Status", "Admin", new { Status = s.Status1 })">@s.Descripcion</a></li>
